@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { apiService } from '../services/api'
+import { PlotData, Layout } from 'plotly.js'
+import Plot from 'react-plotly.js'
+import { MapContainer, TileLayer, Polyline, Tooltip } from 'react-leaflet';
+import 'leaflet/dist/leaflet.css';
+import type { LatLngTuple } from 'leaflet';
 
 interface Community {
   id: number
@@ -43,6 +48,82 @@ const Community: React.FC = () => {
     min_capacity: '',
     has_space: false
   })
+  const months = ['Mar 2016', 'Apr 2016', 'May 2016', 'Jun 2016', 'Jul 2016', 'Aug 2016', 'Sep 2016', 'Oct 2016', 'Nov 2016', 'Dec 2016', 'Jan 2017', 'Feb 2017']
+  const soldToDiscom = [12000, 14000, 13000, 12500, 11000, 15000, 16000, 17000, 19000, 20000, 21000, 20500]
+  const p2p = [18000, 19000, 17000, 16000, 10000, 13000, 15000, 16000, 17000, 18000, 19000, 19500]
+
+  const dummyTrades: { from: LatLngTuple; to: LatLngTuple; energy: number }[] = [
+    {
+      from: [19.0760, 72.8777], // Mumbai
+      to: [18.5204, 73.8567],   // Pune
+      energy: 3.2
+    },
+    {
+      from: [19.0760, 72.8777],
+      to: [21.1458, 79.0882],   // Nagpur
+      energy: 5.8
+    },
+    {
+      from: [28.7041, 77.1025], // Delhi
+      to: [26.9124, 75.7873],   // Jaipur
+      energy: 7.1
+    },
+    {
+      from: [13.0827, 80.2707], // Chennai
+      to: [12.9716, 77.5946],   // Bangalore
+      energy: 2.6
+    }
+  ];
+  
+  const getColor = (energy: number): string => {
+    if (energy > 6) return 'red';
+    if (energy > 4) return 'orange';
+    return 'yellow';
+  };
+  
+  const chartData: Partial<PlotData>[] = [
+    {
+      type: 'scatter',
+      mode: 'lines',
+      x: months,
+      y: soldToDiscom,
+      fill: 'tozeroy',
+      name: 'Sold to Discom',
+      line: { color: '#d62728' }
+    },
+    {
+      type: 'scatter',
+      mode: 'lines',
+      x: months,
+      y: p2p,
+      fill: 'tonexty',
+      name: 'P2P',
+      line: { color: '#ff7f0e' }
+    }
+  ]
+
+  const chartLayout: Partial<Layout> = {
+    height: 350,
+    title: { text: 'Trades' },
+    showlegend: true,
+    legend: {
+      orientation: 'h',
+      x: 0.5,
+      xanchor: 'center',
+      y: -0.2
+    },
+    margin: { t: 40, r: 20, l: 40, b: 40 },
+    xaxis: {
+      // title: '',
+      tickangle: -45
+    },
+    yaxis: {
+      // title: 'kWh',
+      range: [10000, 40000]
+    },
+    plot_bgcolor: 'white',
+    paper_bgcolor: 'white'
+  }
 
   // Create form
   const [createForm, setCreateForm] = useState({
@@ -329,34 +410,73 @@ const Community: React.FC = () => {
           </div>
         )}
 
-        {/* My Communities */}
-        {activeTab === 'my-communities' && (
-          <div>
-            {loading ? (
-              <div className="text-center py-8">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto"></div>
-                <p className="text-gray-600 mt-4">Loading your communities...</p>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {myCommunities.map((community) => (
-                  <CommunityCard key={community.id} community={community} showJoinButton={false} />
-                ))}
-                {myCommunities.length === 0 && (
-                  <div className="col-span-3 text-center py-8">
-                    <p className="text-gray-600">You haven't joined any communities yet</p>
-                    <button
-                      onClick={() => setActiveTab('discover')}
-                      className="mt-4 bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition duration-200"
-                    >
-                      Discover Communities
-                    </button>
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        )}
+{activeTab === 'my-communities' && (
+  <>
+    {/* Geo Heat Map (TradeMap) */}
+    <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+      <h2 className="text-lg font-semibold mb-4">Geographic Energy Transfers</h2>
+      <MapContainer
+  center={[22.9734, 78.6569]} // Center of India
+  zoom={5}
+  scrollWheelZoom={false}
+  style={{ height: '400px', width: '100%' }}
+>
+  
+<TileLayer
+  attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+  url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+/>
+
+
+  {dummyTrades.map((trade, index) => (
+    <Polyline
+      key={index}
+      positions={[trade.from, trade.to]}
+      pathOptions={{ color: getColor(trade.energy), weight: 4 }}
+    >
+      <Tooltip sticky>
+        Energy: {trade.energy} kWh
+      </Tooltip>
+    </Polyline>
+  ))}
+</MapContainer>
+
+    </div>
+
+    {/* Monthly Trades Chart */}
+    <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+      <h2 className="text-lg font-semibold mb-4">Monthly Trades</h2>
+      <Plot data={chartData} layout={chartLayout} />
+    </div>
+
+    {/* Community Cards */}
+    <div>
+      {loading ? (
+        <div className="text-center py-8">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto"></div>
+          <p className="text-gray-600 mt-4">Loading your communities...</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {myCommunities.map((community) => (
+            <CommunityCard key={community.id} community={community} showJoinButton={false} />
+          ))}
+          {myCommunities.length === 0 && (
+            <div className="col-span-3 text-center py-8">
+              <p className="text-gray-600">You haven't joined any communities yet</p>
+              <button
+                onClick={() => setActiveTab('discover')}
+                className="mt-4 bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition duration-200"
+              >
+                Discover Communities
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  </>
+)}
 
         {/* Create Community */}
         {activeTab === 'create' && (

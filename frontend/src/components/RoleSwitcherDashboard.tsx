@@ -91,7 +91,7 @@ const RoleSwitcherDashboard: React.FC = () => {
       </div>
 
       {/* Demo Workflow Steps */}
-      <div className="bg-slate-50 border rounded-lg p-4">
+      {/* <div className="bg-slate-50 border rounded-lg p-4">
         <h3 className="text-lg font-semibold mb-2">Demo Workflow</h3>
         <ol className="list-decimal ml-6 text-sm text-gray-700 space-y-1">
           <li>Switch between <b>Prosumer</b> and <b>Consumer</b> to see tailored dashboards and actions.</li>
@@ -102,7 +102,7 @@ const RoleSwitcherDashboard: React.FC = () => {
           <li>Check <b>Beckn Protocol</b> integration for cross-network energy discovery.</li>
           <li>See <b>Forecast Alerts</b> and <b>Analytics</b> for insights and recommendations.</li>
         </ol>
-      </div>
+      </div> */}
     </div>
   );
 };

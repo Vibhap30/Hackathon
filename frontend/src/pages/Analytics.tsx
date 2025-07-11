@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { apiService } from '../services/api'
-import { LineChart, Line, AreaChart, Area, BarChart, Bar, PieChart, Pie, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts'
+
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official';
 
 interface MarketAnalytics {
   total_volume: number
@@ -104,31 +106,83 @@ const Analytics: React.FC = () => {
 
   // Mock data for demonstration (replace with real data)
   const mockPriceHistory = [
-    { date: '2024-01-01', price: 0.12 },
-    { date: '2024-01-02', price: 0.11 },
-    { date: '2024-01-03', price: 0.13 },
-    { date: '2024-01-04', price: 0.14 },
-    { date: '2024-01-05', price: 0.12 },
-    { date: '2024-01-06', price: 0.15 },
-    { date: '2024-01-07', price: 0.13 }
+    { date: '2025-01-01', price: 0.12 },
+    { date: '2025-01-02', price: 0.11 },
+    { date: '2025-01-03', price: 0.13 },
+    { date: '2025-01-04', price: 0.14 },
+    { date: '2025-01-05', price: 0.12 },
+    { date: '2025-01-06', price: 0.15 },
+    { date: '2025-01-07', price: 0.13 }
   ]
 
   const mockVolumeHistory = [
-    { date: '2024-01-01', volume: 1200 },
-    { date: '2024-01-02', volume: 1350 },
-    { date: '2024-01-03', volume: 1100 },
-    { date: '2024-01-04', volume: 1500 },
-    { date: '2024-01-05', volume: 1400 },
-    { date: '2024-01-06', volume: 1650 },
-    { date: '2024-01-07', volume: 1300 }
+    { date: '2025-01-01', volume: 1200 },
+    { date: '2025-01-02', volume: 1350 },
+    { date: '2025-01-03', volume: 1100 },
+    { date: '2025-01-04', volume: 1500 },
+    { date: '2025-01-05', volume: 1400 },
+    { date: '2025-01-06', volume: 1650 },
+    { date: '2025-01-07', volume: 1300 }
   ]
-
   const mockEnergyDistribution = [
-    { name: 'Solar', value: 45, color: '#FFD700' },
-    { name: 'Wind', value: 30, color: '#87CEEB' },
-    { name: 'Hydro', value: 15, color: '#4682B4' },
-    { name: 'Grid', value: 10, color: '#696969' }
-  ]
+    { name: 'Solar', y: 45, color: '#FFD700' },
+    { name: 'Wind', y: 30, color: '#87CEEB' },
+    { name: 'Hydro', y: 15, color: '#4682B4' },
+    { name: 'Grid', y: 10, color: '#696969' }
+  ];
+  
+  const priceOptions = {
+    chart: { zoomType: 'x' },
+    title: { text: 'Price Trend' },
+    xAxis: { categories: mockPriceHistory.map(d => d.date) },
+    yAxis: { title: { text: 'Price ($/kWh)' } },
+    tooltip: { shared: true },
+    credits: {enabled: false},
+    
+    series: [{ name: 'Price', data: mockPriceHistory.map(d => d.price), type: 'line', color: '#10B981' }]
+  };
+
+  const volumeOptions = {
+    chart: { type: 'area', zoomType: 'x' },
+    title: { text: 'Volume Trend' },
+    xAxis: { categories: mockVolumeHistory.map(d => d.date) },
+    yAxis: { title: { text: 'Volume (kWh)' } },
+    tooltip: { shared: true },
+    credits: {enabled: false},
+    
+    series: [{ name: 'Volume', data: mockVolumeHistory.map(d => d.volume), color: '#3B82F6' }]
+  };
+
+  const distributionOptions = {
+    chart: { type: 'pie' },
+    title: { text: 'Energy Source Distribution' },
+    tooltip: {
+      pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+      point: {
+        valueSuffix: '%'
+      }
+    },
+    credits: {enabled: false},
+    plotOptions: {
+      pie: {
+        allowPointSelect: true,
+        cursor: 'pointer',
+        dataLabels: {
+          enabled: true,
+          format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+        }
+      }
+    },
+    series: [
+      {
+        name: 'Sources',
+        colorByPoint: true,
+        data: mockEnergyDistribution
+      }
+    ]
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 py-8">
@@ -247,76 +301,52 @@ const Analytics: React.FC = () => {
 
                 {/* Charts */}
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {/* Price Trend */}
-                  <div className="bg-white rounded-lg shadow p-6">
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">Price Trend</h3>
-                    <ResponsiveContainer width="100%" height={300}>
-                      <LineChart data={mockPriceHistory}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Line type="monotone" dataKey="price" stroke="#10B981" strokeWidth={2} />
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </div>
-
-                  {/* Volume Trend */}
-                  <div className="bg-white rounded-lg shadow p-6">
-                    <h3 className="text-lg font-medium text-gray-900 mb-4">Volume Trend</h3>
-                    <ResponsiveContainer width="100%" height={300}>
-                      <AreaChart data={mockVolumeHistory}>
-                        <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" />
-                        <YAxis />
-                        <Tooltip />
-                        <Legend />
-                        <Area type="monotone" dataKey="volume" stroke="#3B82F6" fill="#3B82F6" fillOpacity={0.3} />
-                      </AreaChart>
-                    </ResponsiveContainer>
-                  </div>
-                </div>
-
-                {/* Energy Source Distribution */}
-                <div className="bg-white rounded-lg shadow p-6">
-                  <h3 className="text-lg font-medium text-gray-900 mb-4">Energy Source Distribution</h3>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                    <ResponsiveContainer width="100%" height={300}>
-                      <PieChart>
-                        <Pie
-                          data={mockEnergyDistribution}
-                          cx="50%"
-                          cy="50%"
-                          outerRadius={80}
-                          fill="#8884d8"
-                          dataKey="value"
-                          label
-                        >
-                          {mockEnergyDistribution.map((entry, index) => (
-                            <Cell key={`cell-${index}`} fill={entry.color} />
-                          ))}
-                        </Pie>
-                        <Tooltip />
-                        <Legend />
-                      </PieChart>
-                    </ResponsiveContainer>
-                    <div className="space-y-4">
-                      {mockEnergyDistribution.map((source, index) => (
-                        <div key={index} className="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
-                          <div className="flex items-center space-x-3">
-                            <div 
-                              className="w-4 h-4 rounded-full" 
-                              style={{ backgroundColor: source.color }}
-                            ></div>
-                            <span className="font-medium">{source.name}</span>
+                 <div className="bg-white rounded shadow p-4">
+                              <HighchartsReact highcharts={Highcharts} options={priceOptions} />
+                            </div>
+                            <div className="bg-white rounded shadow p-4">
+                              <HighchartsReact highcharts={Highcharts} options={volumeOptions} />
+                            </div>
                           </div>
-                          <span className="text-lg font-bold">{source.value}%</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+                
+                          {/* <div className="bg-white rounded shadow p-4 mt-6">
+                            <HighchartsReact highcharts={Highcharts} options={distributionOptions} />
+                          </div> */}
+                         <div className="bg-white rounded shadow p-6 mt-6 flex flex-col lg:flex-row">
+  {/* Pie Chart - Left */}
+  <div className="w-full lg:w-1/2 flex justify-center items-center">
+    <HighchartsReact highcharts={Highcharts} options={distributionOptions} />
+  </div>
+
+  {/* Analysis Text - Right */}
+  <div className="w-full lg:w-1/2 mt-6 lg:mt-0 lg:pl-6 flex flex-col justify-center">
+    <h3 className="text-xl font-semibold text-gray-900 mb-4">Energy Source Analysis</h3>
+    <ul className="space-y-3 text-gray-700 text-sm">
+      {mockEnergyDistribution.map((source) => (
+        <li key={source.name} className="flex items-start space-x-2">
+          <span
+            className="inline-block w-3 h-3 mt-1 rounded-full"
+            style={{ backgroundColor: source.color }}
+          ></span>
+          <p>
+            <strong>{source.name}:</strong> contributes <strong>{source.y}%</strong> to total energy. This is considered a{' '}
+            {source.y > 40
+              ? 'primary energy source.'
+              : source.y > 20
+              ? 'significant source.'
+              : 'minor contributor.'}
+          </p>
+        </li>
+      ))}
+    </ul>
+    <p className="mt-4 text-gray-600 text-sm">
+      The current energy mix reflects a strong emphasis on renewables like <strong>Solar</strong> and <strong>Wind</strong>, reducing reliance on grid power and enhancing sustainability.
+    </p>
+  </div>
+</div>
+
+
+              
               </div>
             )}
 

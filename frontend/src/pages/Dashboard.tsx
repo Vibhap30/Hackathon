@@ -91,9 +91,9 @@ const Dashboard: React.FC = () => {
   const energyUtilization = (userStats.currentEnergy / userStats.energyCapacity) * 100
 
   return (
-    <div className="min-h-screen bg-gray-50 p-6">
+    <div className="bg-white rounded-lg shadow p-6">
       <RoleSwitcherDashboard />
-      <div className="max-w-7xl mx-auto">
+         <div className="bg-white rounded-lg shadow p-6">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
