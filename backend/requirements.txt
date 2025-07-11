@@ -1,0 +1,65 @@
+# FastAPI Backend Dependencies
+fastapi
+uvicorn[standard]
+sqlalchemy
+alembic
+psycopg2-binary
+redis
+celery
+pydantic
+pydantic-settings
+python-jose[cryptography]
+passlib[bcrypt]
+python-multipart
+python-socketio
+
+# Database & ORM
+asyncpg
+databases[postgresql]
+aiosqlite  # For SQLite async support
+
+# AI & ML
+openai
+langchain
+langgraph
+langchain-openai
+pandas
+numpy
+scikit-learn
+
+# Blockchain Integration
+web3
+
+# HTTP Client for Beckn Protocol
+httpx
+
+# Additional utilities
+python-dateutil
+email-validator
+eth-account
+py-solc-x
+
+# Beckn Protocol
+httpx
+aiohttp
+
+# Monitoring & Logging
+prometheus-client
+structlog
+
+# Security
+cryptography
+python-dotenv
+
+# Testing
+pytest
+pytest-asyncio
+httpx
+
+# Utils
+python-dateutil
+pytz
+email-validator
+
+# Geospatial
+geopy

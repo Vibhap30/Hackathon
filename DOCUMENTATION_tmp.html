@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>DOCUMENTATION.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" type="text/css">
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="powershare-platform---complete-documentation">PowerShare Platform - Complete Documentation</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ol>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#architecture">Architecture</a></li>
+<li><a href="#technology-stack">Technology Stack</a></li>
+<li><a href="#project-structure">Project Structure</a></li>
+<li><a href="#backend-documentation">Backend Documentation</a></li>
+<li><a href="#frontend-documentation">Frontend Documentation</a></li>
+<li><a href="#microservices-documentation">Microservices Documentation</a></li>
+<li><a href="#ai-agents-documentation">AI Agents Documentation</a></li>
+<li><a href="#blockchain-integration">Blockchain Integration</a></li>
+<li><a href="#database-schema">Database Schema</a></li>
+<li><a href="#api-documentation">API Documentation</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#deployment">Deployment</a></li>
+<li><a href="#development-guide">Development Guide</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#security">Security</a></li>
+<li><a href="#performance">Performance</a></li>
+<li><a href="#troubleshooting">Troubleshooting</a></li>
+</ol>
+<hr>
+<h2 id="overview">Overview</h2>
+<p>PowerShare is a revolutionary decentralized energy trading platform that enables peer-to-peer energy trading within communities. The platform leverages AI agents, blockchain technology, and the Beckn Protocol to create a comprehensive energy trading ecosystem.</p>
+<h3 id="key-features">Key Features</h3>
+<ul>
+<li><strong>Peer-to-peer energy trading</strong> with real-time matching</li>
+<li><strong>AI-powered optimization</strong> for energy consumption and trading</li>
+<li><strong>Community-based energy sharing</strong> with local trading</li>
+<li><strong>Blockchain-secured transactions</strong> with smart contracts</li>
+<li><strong>IoT device integration</strong> for real-time energy monitoring</li>
+<li><strong>Beckn Protocol integration</strong> for interoperability</li>
+<li><strong>Real-time analytics</strong> and reporting</li>
+<li><strong>Multi-channel notifications</strong> (email, SMS, push)</li>
+</ul>
+<h3 id="target-users">Target Users</h3>
+<ul>
+<li><strong>Prosumers</strong>: Users who both produce and consume energy</li>
+<li><strong>Consumers</strong>: Energy buyers looking for renewable sources</li>
+<li><strong>Communities</strong>: Local energy trading groups</li>
+<li><strong>Utilities</strong>: Energy providers and grid operators</li>
+</ul>
+<hr>
+<h2 id="architecture">Architecture</h2>
+<h3 id="high-level-architecture">High-Level Architecture</h3>
+<pre class="hljs"><code><div>┌─────────────────────────────────────────────────────────────────┐
+│                     PowerShare Platform                         │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                 │
+│  ┌─────────────┐    ┌─────────────┐    ┌─────────────┐         │
+│  │   Frontend  │    │   Backend   │    │ AI Agents   │         │
+│  │   (React)   │◄──►│  (FastAPI)  │◄──►│(LangGraph)  │         │
+│  └─────────────┘    └─────────────┘    └─────────────┘         │
+│         │                    │                   │             │
+│         └────────────────────┼───────────────────┘             │
+│                              │                                 │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                  Microservices                         │   │
+│  │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────────┐   │   │
+│  │  │Trading  │ │   IoT   │ │Analytics│ │Notifications│   │   │
+│  │  │Service  │ │Service  │ │Service  │ │   Service   │   │   │
+│  │  └─────────┘ └─────────┘ └─────────┘ └─────────────┘   │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│                              │                                 │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │                Infrastructure                          │   │
+│  │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────────┐   │   │
+│  │  │PostgreSQL│ │  Redis  │ │Blockchain│ │    MQTT     │   │   │
+│  │  │Database │ │  Cache  │ │(Ethereum)│ │   Broker    │   │   │
+│  │  └─────────┘ └─────────┘ └─────────┘ └─────────────┘   │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│                                                                 │
+└─────────────────────────────────────────────────────────────────┘
+</div></code></pre>
+<h3 id="component-interactions">Component Interactions</h3>
+<ul>
+<li><strong>Frontend</strong> communicates with Backend via REST APIs and WebSockets</li>
+<li><strong>Backend</strong> coordinates with all microservices</li>
+<li><strong>AI Agents</strong> provide intelligent recommendations and automation</li>
+<li><strong>Microservices</strong> handle specialized functions (trading, IoT, analytics, notifications)</li>
+<li><strong>Blockchain</strong> ensures secure and transparent transactions</li>
+<li><strong>Database</strong> stores all application data with Redis for caching</li>
+</ul>
+<hr>
+<h2 id="technology-stack">Technology Stack</h2>
+<h3 id="backend-technologies">Backend Technologies</h3>
+<ul>
+<li><strong>FastAPI</strong> 0.104.1 - High-performance Python web framework</li>
+<li><strong>PostgreSQL</strong> - Primary database with TimescaleDB for time-series data</li>
+<li><strong>Redis</strong> 5.0.1 - Caching and real-time features</li>
+<li><strong>SQLAlchemy</strong> 2.0.23 - ORM for database operations</li>
+<li><strong>Celery</strong> 5.3.4 - Background task processing</li>
+<li><strong>Pydantic</strong> 2.5.0 - Data validation and serialization</li>
+</ul>
+<h3 id="frontend-technologies">Frontend Technologies</h3>
+<ul>
+<li><strong>React</strong> 18.2.0 - Modern UI library</li>
+<li><strong>TypeScript</strong> - Type-safe JavaScript</li>
+<li><strong>Vite</strong> 5.0.0 - Fast build tool and dev server</li>
+<li><strong>Tailwind CSS</strong> 3.3.5 - Utility-first styling</li>
+<li><strong>React Query</strong> 5.8.4 - Data fetching and state management</li>
+<li><strong>Socket.IO</strong> 4.7.4 - Real-time communication</li>
+<li><strong>Recharts</strong> 2.8.0 - Data visualization</li>
+</ul>
+<h3 id="ai--ml">AI &amp; ML</h3>
+<ul>
+<li><strong>LangGraph</strong> 0.0.19 - Agentic AI workflows and orchestration</li>
+<li><strong>LangChain</strong> 0.0.340 - LLM integration and tool calling</li>
+<li><strong>OpenAI</strong> 1.3.8 - GPT-4 integration</li>
+<li><strong>Pandas</strong> 2.1.4 - Data processing</li>
+<li><strong>NumPy</strong> 1.24.3 - Numerical computing</li>
+<li><strong>Scikit-learn</strong> 1.3.2 - Machine learning</li>
+</ul>
+<h3 id="blockchain">Blockchain</h3>
+<ul>
+<li><strong>Ethereum/Polygon</strong> - Smart contract platform</li>
+<li><strong>Solidity</strong> ^0.8.19 - Smart contract language</li>
+<li><strong>Web3.py</strong> 6.13.0 - Blockchain integration</li>
+<li><strong>OpenZeppelin</strong> - Smart contract libraries</li>
+</ul>
+<h3 id="protocol-integration">Protocol Integration</h3>
+<ul>
+<li><strong>Beckn Protocol</strong> - Interoperable network discovery</li>
+<li><strong>MQTT</strong> 1.6.1 - IoT device communication</li>
+<li><strong>HTTP/WebSocket</strong> - API communication</li>
+</ul>
+<h3 id="devops--infrastructure">DevOps &amp; Infrastructure</h3>
+<ul>
+<li><strong>Docker</strong> - Containerization</li>
+<li><strong>Docker Compose</strong> - Multi-container orchestration</li>
+<li><strong>Nginx</strong> - Reverse proxy and load balancing</li>
+<li><strong>Prometheus</strong> - Monitoring and metrics</li>
+<li><strong>Grafana</strong> - Data visualization and dashboards</li>
+</ul>
+<hr>
+<h2 id="project-structure">Project Structure</h2>
+<pre class="hljs"><code><div>powershare-platform/
+├── README.md                     # Project overview and setup
+├── DOCUMENTATION.md             # This comprehensive documentation
+├── .env.template               # Environment variables template
+├── docker-compose.yml          # Docker services configuration
+├── 
+├── backend/                    # FastAPI backend application
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── app/
+│       ├── main.py            # FastAPI application entry point
+│       ├── core/              # Core configurations
+│       │   ├── config.py      # Application settings
+│       │   └── database.py    # Database configuration
+│       ├── models/            # SQLAlchemy models
+│       │   ├── __init__.py
+│       │   ├── user.py        # User model
+│       │   ├── energy_transaction.py  # Energy transaction models
+│       │   ├── iot_device.py  # IoT device models
+│       │   └── community.py   # Community models
+│       ├── api/               # API endpoints
+│       │   └── api_v1/
+│       │       ├── api.py     # API router
+│       │       └── endpoints/ # Individual endpoint files
+│       │           ├── auth.py
+│       │           ├── users.py
+│       │           ├── energy_trading.py
+│       │           ├── iot_devices.py
+│       │           ├── communities.py
+│       │           ├── ai_agents.py
+│       │           ├── blockchain.py
+│       │           ├── beckn_protocol.py
+│       │           └── analytics.py
+│       └── services/          # Business logic services
+│           └── websocket_manager.py
+│
+├── frontend/                  # React frontend application
+│   ├── package.json
+│   ├── vite.config.ts
+│   ├── tailwind.config.js
+│   └── src/
+│       ├── main.tsx          # Application entry point
+│       ├── App.tsx           # Main App component
+│       ├── components/       # Reusable components
+│       │   ├── Navbar.tsx
+│       │   └── Footer.tsx
+│       ├── pages/            # Page components
+│       │   ├── HomePage.tsx
+│       │   ├── Dashboard.tsx
+│       │   ├── EnergyMarketplace.tsx
+│       │   ├── Community.tsx
+│       │   ├── Analytics.tsx
+│       │   ├── AIAssistant.tsx
+│       │   └── Settings.tsx
+│       └── services/         # API and WebSocket services
+│           ├── api.ts
+│           └── websocket.tsx
+│
+├── microservices/            # Microservices architecture
+│   ├── trading/             # Trading microservice
+│   │   ├── main.py
+│   │   ├── requirements.txt
+│   │   └── Dockerfile
+│   ├── iot/                 # IoT microservice
+│   │   ├── main.py
+│   │   ├── requirements.txt
+│   │   └── Dockerfile
+│   ├── analytics/           # Analytics microservice
+│   │   ├── main.py
+│   │   ├── requirements.txt
+│   │   └── Dockerfile
+│   └── notifications/       # Notifications microservice
+│       ├── main.py
+│       ├── requirements.txt
+│       └── Dockerfile
+│
+├── ai-agents/               # AI agents service
+│   ├── main.py             # AI agents FastAPI service
+│   ├── requirements.txt
+│   ├── Dockerfile
+│   ├── agents/
+│   │   └── energy_trading_agent.py
+│   ├── tools/
+│   │   └── platform_tools.py
+│   └── workflows/
+│       └── energy_optimization.py
+│
+├── blockchain/              # Blockchain contracts
+│   └── contracts/
+│       └── PowerShareEnergyTrading.sol
+│
+├── infrastructure/          # Infrastructure as Code
+│   ├── kubernetes/         # Kubernetes manifests
+│   ├── helm/              # Helm charts
+│   └── terraform/         # Terraform configurations
+│
+└── memory-bank/            # Project memory and documentation
+    ├── activeContext.md
+    ├── architect.md
+    ├── decisionLog.md
+    ├── productContext.md
+    ├── progress.md
+    ├── projectBrief.md
+    └── systemPatterns.md
+</div></code></pre>
+<hr>
+<h2 id="backend-documentation">Backend Documentation</h2>
+<h3 id="fastapi-application-structure">FastAPI Application Structure</h3>
+<h4 id="main-application-appmainpy">Main Application (<code>app/main.py</code>)</h4>
+<p>The main FastAPI application entry point that:</p>
+<ul>
+<li>Configures structured logging with <code>structlog</code></li>
+<li>Sets up CORS middleware for cross-origin requests</li>
+<li>Includes GZip middleware for response compression</li>
+<li>Manages application lifespan (startup/shutdown)</li>
+<li>Implements WebSocket connections for real-time communication</li>
+<li>Includes health check endpoints</li>
+</ul>
+<h4 id="core-configuration-appcoreconfigpy">Core Configuration (<code>app/core/config.py</code>)</h4>
+<p>Application settings managed with Pydantic Settings:</p>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Settings</span><span class="hljs-params">(BaseSettings)</span>:</span>
+    APP_NAME: str = <span class="hljs-string">"PowerShare"</span>
+    ENVIRONMENT: str = <span class="hljs-string">"development"</span>
+    DEBUG: bool = <span class="hljs-literal">True</span>
+    SECRET_KEY: str = <span class="hljs-string">"your-secret-key-change-in-production"</span>
+    DATABASE_URL: str = <span class="hljs-string">"postgresql://..."</span>
+    REDIS_URL: str = <span class="hljs-string">"redis://..."</span>
+    <span class="hljs-comment"># ... other configuration options</span>
+</div></code></pre>
+<h4 id="database-configuration-appcoredatabasepy">Database Configuration (<code>app/core/database.py</code>)</h4>
+<ul>
+<li>SQLAlchemy setup with async support</li>
+<li>Connection pooling configuration</li>
+<li>Database session management</li>
+<li>Migration support with Alembic</li>
+</ul>
+<h3 id="data-models">Data Models</h3>
+<h4 id="user-model-appmodelsuserpy">User Model (<code>app/models/user.py</code>)</h4>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span><span class="hljs-params">(Base)</span>:</span>
+    id = Column(Integer, primary_key=<span class="hljs-literal">True</span>)
+    email = Column(String, unique=<span class="hljs-literal">True</span>, index=<span class="hljs-literal">True</span>)
+    username = Column(String, unique=<span class="hljs-literal">True</span>, index=<span class="hljs-literal">True</span>)
+    full_name = Column(String)
+    user_type = Column(SQLEnum(UserType))
+    energy_capacity = Column(Float)
+    current_energy = Column(Float)
+    reputation_score = Column(Float)
+    <span class="hljs-comment"># ... additional fields</span>
+</div></code></pre>
+<h4 id="energy-transaction-model-appmodelsenergytransactionpy">Energy Transaction Model (<code>app/models/energy_transaction.py</code>)</h4>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EnergyTransaction</span><span class="hljs-params">(Base)</span>:</span>
+    id = Column(Integer, primary_key=<span class="hljs-literal">True</span>)
+    seller_id = Column(Integer, ForeignKey(<span class="hljs-string">"users.id"</span>))
+    buyer_id = Column(Integer, ForeignKey(<span class="hljs-string">"users.id"</span>))
+    energy_amount = Column(Float)
+    price_per_unit = Column(Float)
+    transaction_status = Column(SQLEnum(TransactionStatus))
+    <span class="hljs-comment"># ... additional fields</span>
+</div></code></pre>
+<h4 id="iot-device-model-appmodelsiotdevicepy">IoT Device Model (<code>app/models/iot_device.py</code>)</h4>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IoTDevice</span><span class="hljs-params">(Base)</span>:</span>
+    id = Column(Integer, primary_key=<span class="hljs-literal">True</span>)
+    user_id = Column(Integer, ForeignKey(<span class="hljs-string">"users.id"</span>))
+    device_name = Column(String)
+    device_type = Column(SQLEnum(DeviceType))
+    energy_capacity = Column(Float)
+    current_energy = Column(Float)
+    <span class="hljs-comment"># ... additional fields</span>
+</div></code></pre>
+<h4 id="community-model-appmodelscommunitypy">Community Model (<code>app/models/community.py</code>)</h4>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Community</span><span class="hljs-params">(Base)</span>:</span>
+    id = Column(Integer, primary_key=<span class="hljs-literal">True</span>)
+    name = Column(String)
+    description = Column(Text)
+    community_type = Column(SQLEnum(CommunityType))
+    creator_id = Column(Integer, ForeignKey(<span class="hljs-string">"users.id"</span>))
+    <span class="hljs-comment"># ... additional fields</span>
+</div></code></pre>
+<h3 id="api-endpoints">API Endpoints</h3>
+<h4 id="authentication-appapiapiv1endpointsauthpy">Authentication (<code>app/api/api_v1/endpoints/auth.py</code>)</h4>
+<ul>
+<li><code>POST /auth/register</code> - User registration</li>
+<li><code>POST /auth/login</code> - User authentication</li>
+<li><code>POST /auth/refresh</code> - Token refresh</li>
+<li><code>GET /auth/me</code> - Current user information</li>
+</ul>
+<h4 id="users-appapiapiv1endpointsuserspy">Users (<code>app/api/api_v1/endpoints/users.py</code>)</h4>
+<ul>
+<li><code>GET /users/</code> - List all users</li>
+<li><code>GET /users/me</code> - Current user profile</li>
+<li><code>PUT /users/me</code> - Update user profile</li>
+<li><code>GET /users/{user_id}</code> - Get user by ID</li>
+<li><code>GET /users/me/stats</code> - User statistics</li>
+</ul>
+<h4 id="energy-trading-appapiapiv1endpointsenergytradingpy">Energy Trading (<code>app/api/api_v1/endpoints/energy_trading.py</code>)</h4>
+<ul>
+<li><code>GET /energy-trading/transactions</code> - List transactions</li>
+<li><code>POST /energy-trading/transactions</code> - Create transaction</li>
+<li><code>GET /energy-trading/offers</code> - List energy offers</li>
+<li><code>POST /energy-trading/offers</code> - Create energy offer</li>
+<li><code>GET /energy-trading/market-stats</code> - Market statistics</li>
+</ul>
+<h4 id="iot-devices-appapiapiv1endpointsiotdevicespy">IoT Devices (<code>app/api/api_v1/endpoints/iot_devices.py</code>)</h4>
+<ul>
+<li><code>GET /iot-devices/</code> - List user's IoT devices</li>
+<li><code>POST /iot-devices/</code> - Register new IoT device</li>
+<li><code>GET /iot-devices/{device_id}</code> - Get device details</li>
+<li><code>PUT /iot-devices/{device_id}</code> - Update device</li>
+<li><code>DELETE /iot-devices/{device_id}</code> - Delete device</li>
+</ul>
+<h4 id="communities-appapiapiv1endpointscommunitiespy">Communities (<code>app/api/api_v1/endpoints/communities.py</code>)</h4>
+<ul>
+<li><code>GET /communities/</code> - List all communities</li>
+<li><code>POST /communities/</code> - Create new community</li>
+<li><code>GET /communities/{community_id}</code> - Get community details</li>
+<li><code>PUT /communities/{community_id}</code> - Update community</li>
+<li><code>POST /communities/{community_id}/join</code> - Join community</li>
+</ul>
+<h4 id="ai-agents-appapiapiv1endpointsaiagentspy">AI Agents (<code>app/api/api_v1/endpoints/ai_agents.py</code>)</h4>
+<ul>
+<li><code>POST /ai-agents/process</code> - Process AI agent request</li>
+<li><code>GET /ai-agents/recommendations</code> - Get AI recommendations</li>
+<li><code>POST /ai-agents/optimize</code> - Optimize energy usage</li>
+</ul>
+<h4 id="blockchain-appapiapiv1endpointsblockchainpy">Blockchain (<code>app/api/api_v1/endpoints/blockchain.py</code>)</h4>
+<ul>
+<li><code>GET /blockchain/wallet</code> - Get wallet information</li>
+<li><code>POST /blockchain/deploy-contract</code> - Deploy smart contract</li>
+<li><code>POST /blockchain/execute-transaction</code> - Execute blockchain transaction</li>
+</ul>
+<h4 id="beckn-protocol-appapiapiv1endpointsbecknprotocolpy">Beckn Protocol (<code>app/api/api_v1/endpoints/beckn_protocol.py</code>)</h4>
+<ul>
+<li><code>POST /beckn/search</code> - Search for energy providers</li>
+<li><code>POST /beckn/select</code> - Select energy provider</li>
+<li><code>POST /beckn/confirm</code> - Confirm energy transaction</li>
+</ul>
+<h4 id="analytics-appapiapiv1endpointsanalyticspy">Analytics (<code>app/api/api_v1/endpoints/analytics.py</code>)</h4>
+<ul>
+<li><code>GET /analytics/market</code> - Market analytics</li>
+<li><code>GET /analytics/user/{user_id}</code> - User analytics</li>
+<li><code>GET /analytics/community/{community_id}</code> - Community analytics</li>
+</ul>
+<h3 id="websocket-service-appserviceswebsocketmanagerpy">WebSocket Service (<code>app/services/websocket_manager.py</code>)</h3>
+<p>Real-time communication manager that handles:</p>
+<ul>
+<li>WebSocket connection management</li>
+<li>Client authentication and authorization</li>
+<li>Message broadcasting</li>
+<li>Real-time energy trading updates</li>
+<li>Live market data streaming</li>
+</ul>
+<hr>
+<h2 id="frontend-documentation">Frontend Documentation</h2>
+<h3 id="react-application-structure">React Application Structure</h3>
+<h4 id="main-application-srcapptsx">Main Application (<code>src/App.tsx</code>)</h4>
+<p>The root React component that:</p>
+<ul>
+<li>Provides WebSocket context to all components</li>
+<li>Manages global navigation with React Router</li>
+<li>Implements motion animations with Framer Motion</li>
+<li>Handles global layout (Navbar, Footer, routing)</li>
+</ul>
+<h4 id="entry-point-srcmaintsx">Entry Point (<code>src/main.tsx</code>)</h4>
+<p>Application bootstrap that:</p>
+<ul>
+<li>Configures React Query for API state management</li>
+<li>Sets up routing with React Router</li>
+<li>Provides toast notifications with react-hot-toast</li>
+<li>Enables React Query DevTools for development</li>
+</ul>
+<h3 id="components">Components</h3>
+<h4 id="navigation-srccomponentsnavbartsx">Navigation (<code>src/components/Navbar.tsx</code>)</h4>
+<p>Main navigation component featuring:</p>
+<ul>
+<li>Responsive design with mobile menu</li>
+<li>User authentication state</li>
+<li>Real-time notifications</li>
+<li>Quick access to all major sections</li>
+</ul>
+<h4 id="footer-srccomponentsfootertsx">Footer (<code>src/components/Footer.tsx</code>)</h4>
+<p>Simple footer component with:</p>
+<ul>
+<li>Copyright information</li>
+<li>Platform branding</li>
+<li>Legal links</li>
+</ul>
+<h3 id="pages">Pages</h3>
+<h4 id="home-page-srcpageshomepagetsx">Home Page (<code>src/pages/HomePage.tsx</code>)</h4>
+<p>Landing page with:</p>
+<ul>
+<li>Hero section introducing the platform</li>
+<li>Feature highlights</li>
+<li>Getting started guide</li>
+<li>Community statistics</li>
+</ul>
+<h4 id="dashboard-srcpagesdashboardtsx">Dashboard (<code>src/pages/Dashboard.tsx</code>)</h4>
+<p>User dashboard showing:</p>
+<ul>
+<li>Energy production/consumption charts</li>
+<li>Current energy balance</li>
+<li>Recent transactions</li>
+<li>Market overview</li>
+<li>Quick actions (buy/sell energy)</li>
+</ul>
+<h4 id="energy-marketplace-srcpagesenergymarketplacetsx">Energy Marketplace (<code>src/pages/EnergyMarketplace.tsx</code>)</h4>
+<p>Trading interface with:</p>
+<ul>
+<li>Live energy offers/requests</li>
+<li>Interactive trading forms</li>
+<li>Market depth visualization</li>
+<li>Order book display</li>
+<li>Transaction history</li>
+</ul>
+<h4 id="community-srcpagescommunitytsx">Community (<code>src/pages/Community.tsx</code>)</h4>
+<p>Community management with:</p>
+<ul>
+<li>Community discovery</li>
+<li>Join/create communities</li>
+<li>Member management</li>
+<li>Community energy sharing</li>
+<li>Local trading features</li>
+</ul>
+<h4 id="analytics-srcpagesanalyticstsx">Analytics (<code>src/pages/Analytics.tsx</code>)</h4>
+<p>Comprehensive analytics dashboard:</p>
+<ul>
+<li>Market trend analysis</li>
+<li>User performance metrics</li>
+<li>Community statistics</li>
+<li>Predictive analytics</li>
+<li>Export capabilities</li>
+</ul>
+<h4 id="ai-assistant-srcpagesaiassistanttsx">AI Assistant (<code>src/pages/AIAssistant.tsx</code>)</h4>
+<p>AI-powered assistant interface:</p>
+<ul>
+<li>Energy optimization recommendations</li>
+<li>Trading strategy suggestions</li>
+<li>Real-time market analysis</li>
+<li>Automated trading configuration</li>
+<li>Performance insights</li>
+</ul>
+<h4 id="settings-srcpagessettingstsx">Settings (<code>src/pages/Settings.tsx</code>)</h4>
+<p>User preferences and configuration:</p>
+<ul>
+<li>Account settings</li>
+<li>Notification preferences</li>
+<li>Trading parameters</li>
+<li>Security settings</li>
+<li>Privacy controls</li>
+</ul>
+<h3 id="services">Services</h3>
+<h4 id="api-service-srcservicesapits">API Service (<code>src/services/api.ts</code>)</h4>
+<p>Centralized API client using Axios that provides:</p>
+<ul>
+<li>Authentication management</li>
+<li>Request/response interceptors</li>
+<li>Error handling</li>
+<li>TypeScript interfaces</li>
+<li>Methods for all backend endpoints</li>
+</ul>
+<h4 id="websocket-service-srcserviceswebsockettsx">WebSocket Service (<code>src/services/websocket.tsx</code>)</h4>
+<p>Real-time communication service:</p>
+<ul>
+<li>WebSocket connection management</li>
+<li>Event handling for real-time updates</li>
+<li>Connection state management</li>
+<li>Automatic reconnection</li>
+<li>Message broadcasting</li>
+</ul>
+<hr>
+<h2 id="microservices-documentation">Microservices Documentation</h2>
+<h3 id="trading-microservice-microservicestradingmainpy">Trading Microservice (<code>microservices/trading/main.py</code>)</h3>
+<h4 id="purpose">Purpose</h4>
+<p>Handles peer-to-peer energy trading operations, order matching, and trade execution.</p>
+<h4 id="key-features">Key Features</h4>
+<ul>
+<li><strong>Order Management</strong>: Create, modify, and cancel energy orders</li>
+<li><strong>Order Matching</strong>: Automatic matching of buy/sell orders</li>
+<li><strong>Trade Execution</strong>: Secure transaction processing</li>
+<li><strong>Market Data</strong>: Real-time market statistics</li>
+<li><strong>Price Discovery</strong>: Dynamic pricing based on supply/demand</li>
+</ul>
+<h4 id="api-endpoints">API Endpoints</h4>
+<ul>
+<li><code>POST /orders</code> - Create new energy order</li>
+<li><code>GET /orders</code> - List all orders</li>
+<li><code>GET /orders/{order_id}</code> - Get order details</li>
+<li><code>DELETE /orders/{order_id}</code> - Cancel order</li>
+<li><code>GET /orderbook</code> - Get current order book</li>
+<li><code>GET /trades</code> - List completed trades</li>
+<li><code>GET /market-data</code> - Get market statistics</li>
+</ul>
+<h4 id="data-models">Data Models</h4>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">EnergyOrder</span><span class="hljs-params">(BaseModel)</span>:</span>
+    user_id: int
+    order_type: OrderType  <span class="hljs-comment"># BUY or SELL</span>
+    energy_amount: float
+    price_per_unit: float
+    location: Optional[str]
+    renewable_source: bool
+    expires_at: datetime
+</div></code></pre>
+<h3 id="iot-microservice-microservicesiotmainpy">IoT Microservice (<code>microservices/iot/main.py</code>)</h3>
+<h4 id="purpose">Purpose</h4>
+<p>Manages IoT device integration, real-time data collection, and device monitoring.</p>
+<h4 id="key-features">Key Features</h4>
+<ul>
+<li><strong>Device Registration</strong>: Register and manage IoT devices</li>
+<li><strong>Real-time Data</strong>: Collect energy production/consumption data</li>
+<li><strong>Device Monitoring</strong>: Track device health and performance</li>
+<li><strong>Alert System</strong>: Automated alerts for device issues</li>
+<li><strong>Data Analytics</strong>: Historical data analysis</li>
+</ul>
+<h4 id="api-endpoints">API Endpoints</h4>
+<ul>
+<li><code>POST /readings</code> - Submit device readings</li>
+<li><code>POST /readings/batch</code> - Batch upload readings</li>
+<li><code>GET /devices/{device_id}/readings</code> - Get device readings</li>
+<li><code>GET /devices/{device_id}/latest</code> - Get latest reading</li>
+<li><code>GET /devices/{device_id}/statistics</code> - Device statistics</li>
+<li><code>POST /devices/{device_id}/alerts</code> - Configure alerts</li>
+</ul>
+<h4 id="data-models">Data Models</h4>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DeviceReading</span><span class="hljs-params">(BaseModel)</span>:</span>
+    device_id: str
+    energy_production: float
+    energy_consumption: float
+    temperature: Optional[float]
+    humidity: Optional[float]
+    battery_level: Optional[float]
+    timestamp: datetime
+</div></code></pre>
+<h3 id="analytics-microservice-microservicesanalyticsmainpy">Analytics Microservice (<code>microservices/analytics/main.py</code>)</h3>
+<h4 id="purpose">Purpose</h4>
+<p>Provides data analytics, reporting, and business intelligence for the platform.</p>
+<h4 id="key-features">Key Features</h4>
+<ul>
+<li><strong>Market Analytics</strong>: Trading volume, price trends, market efficiency</li>
+<li><strong>User Analytics</strong>: Individual user performance and insights</li>
+<li><strong>Community Analytics</strong>: Community-level energy sharing metrics</li>
+<li><strong>Predictive Analytics</strong>: Machine learning-based predictions</li>
+<li><strong>Report Generation</strong>: Automated report generation</li>
+</ul>
+<h4 id="api-endpoints">API Endpoints</h4>
+<ul>
+<li><code>GET /market</code> - Market analytics</li>
+<li><code>GET /price-history</code> - Historical price data</li>
+<li><code>GET /volume-history</code> - Trading volume history</li>
+<li><code>GET /user/{user_id}</code> - User analytics</li>
+<li><code>GET /community/{community_id}</code> - Community analytics</li>
+<li><code>GET /platform</code> - Platform-wide analytics</li>
+<li><code>GET /predictive</code> - Predictive analytics</li>
+</ul>
+<h4 id="data-models">Data Models</h4>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MarketAnalytics</span><span class="hljs-params">(BaseModel)</span>:</span>
+    total_volume: float
+    average_price: float
+    price_trend: str
+    volume_trend: str
+    peak_hours: List[int]
+    active_traders: int
+    price_volatility: float
+    market_efficiency: float
+</div></code></pre>
+<h3 id="notifications-microservice-microservicesnotificationsmainpy">Notifications Microservice (<code>microservices/notifications/main.py</code>)</h3>
+<h4 id="purpose">Purpose</h4>
+<p>Handles multi-channel notifications including email, SMS, and push notifications.</p>
+<h4 id="key-features">Key Features</h4>
+<ul>
+<li><strong>Email Notifications</strong>: HTML and text email support</li>
+<li><strong>SMS Notifications</strong>: Twilio integration for SMS</li>
+<li><strong>Push Notifications</strong>: Firebase for mobile push notifications</li>
+<li><strong>Template Management</strong>: Customizable notification templates</li>
+<li><strong>Delivery Tracking</strong>: Track notification delivery status</li>
+</ul>
+<h4 id="api-endpoints">API Endpoints</h4>
+<ul>
+<li><code>POST /send</code> - Send notification</li>
+<li><code>POST /send/email</code> - Send email notification</li>
+<li><code>POST /send/sms</code> - Send SMS notification</li>
+<li><code>POST /send/push</code> - Send push notification</li>
+<li><code>GET /templates</code> - List notification templates</li>
+<li><code>POST /templates</code> - Create notification template</li>
+</ul>
+<h4 id="data-models">Data Models</h4>
+<pre class="hljs"><code><div><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NotificationRequest</span><span class="hljs-params">(BaseModel)</span>:</span>
+    recipient: str
+    type: str  <span class="hljs-comment"># email, sms, push</span>
+    template: str
+    data: Dict[str, Any]
+    priority: str = <span class="hljs-string">"normal"</span>
+    scheduled_at: Optional[datetime] = <span class="hljs-literal">None</span>
+</div></code></pre>
+<hr>
+<h2 id="ai-agents-documentation">AI Agents Documentation</h2>
+<h3 id="ai-agents-service-ai-agentsmainpy">AI Agents Service (<code>ai-agents/main.py</code>)</h3>
+<h4 id="purpose">Purpose</h4>
+<p>Provides AI-powered energy trading optimization, market analysis, and automated decision-making.</p>
+<h4 id="key-features">Key Features</h4>
+<ul>
+<li><strong>Energy Trading Agent</strong>: Automated trading based on market conditions</li>
+<li><strong>Optimization Workflows</strong>: Energy usage optimization recommendations</li>
+<li><strong>Market Analysis</strong>: Real-time market trend analysis</li>
+<li><strong>Predictive Analytics</strong>: Machine learning-based predictions</li>
+<li><strong>Automation</strong>: Automated trading and energy management</li>
+</ul>
+<h4 id="architecture">Architecture</h4>
+<p>Built on <strong>LangGraph</strong> for agentic workflows:</p>
+<ul>
+<li><strong>Agents</strong>: Specialized AI agents for different tasks</li>
+<li><strong>Tools</strong>: Platform integration tools for data access</li>
+<li><strong>Workflows</strong>: Multi-step optimization processes</li>
+<li><strong>Memory</strong>: Conversation and decision history</li>
+</ul>
+<h4 id="api-endpoints">API Endpoints</h4>
+<ul>
+<li><code>POST /api/v1/agents/energy-trading/process</code> - Process trading request</li>
+<li><code>GET /api/v1/agents/energy-trading/recommendations/{user_id}</code> - Get recommendations</li>
+<li><code>POST /api/v1/agents/session-history</code> - Manage conversation history</li>
+<li><code>GET /api/v1/agents/market-analysis</code> - Get market analysis</li>
+<li><code>GET /api/v1/agents/status</code> - Get agents status</li>
+</ul>
+<h4 id="components">Components</h4>
+<h5 id="energy-trading-agent-ai-agentsagentsenergytradingagentpy">Energy Trading Agent (<code>ai-agents/agents/energy_trading_agent.py</code>)</h5>
+<p>Intelligent trading agent that:</p>
+<ul>
+<li>Analyzes market conditions</li>
+<li>Provides trading recommendations</li>
+<li>Executes automated trades</li>
+<li>Manages risk and portfolio</li>
+<li>Learns from historical data</li>
+</ul>
+<h5 id="platform-tools-ai-agentstoolsplatformtoolspy">Platform Tools (<code>ai-agents/tools/platform_tools.py</code>)</h5>
+<p>Integration tools for:</p>
+<ul>
+<li>User data access</li>
+<li>Market data retrieval</li>
+<li>Trading execution</li>
+<li>IoT device interaction</li>
+<li>Analytics queries</li>
+</ul>
+<h5 id="energy-optimization-workflow-ai-agentsworkflowsenergyoptimizationpy">Energy Optimization Workflow (<code>ai-agents/workflows/energy_optimization.py</code>)</h5>
+<p>Multi-step optimization process:</p>
+<ol>
+<li><strong>Data Collection</strong>: Gather user energy data</li>
+<li><strong>Analysis</strong>: Analyze consumption patterns</li>
+<li><strong>Optimization</strong>: Generate optimization recommendations</li>
+<li><strong>Action Planning</strong>: Create actionable items</li>
+<li><strong>Execution</strong>: Implement optimizations</li>
+</ol>
+<hr>
+<h2 id="blockchain-integration">Blockchain Integration</h2>
+<h3 id="smart-contract-blockchaincontractspowershareenergytradingsol">Smart Contract (<code>blockchain/contracts/PowerShareEnergyTrading.sol</code>)</h3>
+<h4 id="purpose">Purpose</h4>
+<p>Ethereum smart contract for secure, transparent energy trading transactions.</p>
+<h4 id="key-features">Key Features</h4>
+<ul>
+<li><strong>Decentralized Trading</strong>: Peer-to-peer energy transactions</li>
+<li><strong>Escrow System</strong>: Secure payment handling</li>
+<li><strong>Reputation System</strong>: User reputation tracking</li>
+<li><strong>Automated Settlement</strong>: Smart contract-based settlements</li>
+<li><strong>Transparency</strong>: All transactions on blockchain</li>
+</ul>
+<h4 id="contract-structure">Contract Structure</h4>
+<pre class="hljs"><code><div>contract PowerShareEnergyTrading {
+    // State variables
+    mapping(address =&gt; User) public users;
+    mapping(uint256 =&gt; EnergyOffer) public offers;
+    mapping(uint256 =&gt; EnergyTransaction) public transactions;
+    
+    // Events
+    event OfferCreated(uint256 offerId, address seller);
+    event TransactionExecuted(uint256 transactionId);
+    event PaymentReleased(uint256 transactionId, uint256 amount);
+    
+    // Functions
+    function createOffer(...) external;
+    function acceptOffer(...) external;
+    function confirmDelivery(...) external;
+    function disputeTransaction(...) external;
+}
+</div></code></pre>
+<h4 id="integration-points">Integration Points</h4>
+<ul>
+<li><strong>Backend Integration</strong>: Web3.py for contract interaction</li>
+<li><strong>Frontend Integration</strong>: Ethers.js for web3 functionality</li>
+<li><strong>Payment Processing</strong>: Cryptocurrency and fiat integration</li>
+<li><strong>Energy Verification</strong>: IoT device data verification</li>
+</ul>
+<hr>
+<h2 id="database-schema">Database Schema</h2>
+<h3 id="core-tables">Core Tables</h3>
+<h4 id="users-table">Users Table</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> <span class="hljs-keyword">users</span> (
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">SERIAL</span> PRIMARY <span class="hljs-keyword">KEY</span>,
+    email <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    username <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    full_name <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    hashed_password <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    user_type user_type_enum <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    phone <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">20</span>),
+    location <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>),
+    wallet_address <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">42</span>),
+    energy_capacity <span class="hljs-built_in">FLOAT</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+    current_energy <span class="hljs-built_in">FLOAT</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+    reputation_score <span class="hljs-built_in">FLOAT</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+    is_active <span class="hljs-built_in">BOOLEAN</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">TRUE</span>,
+    created_at <span class="hljs-built_in">TIMESTAMP</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NOW</span>(),
+    updated_at <span class="hljs-built_in">TIMESTAMP</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NOW</span>()
+);
+</div></code></pre>
+<h4 id="energy-transactions-table">Energy Transactions Table</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> energy_transactions (
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">SERIAL</span> PRIMARY <span class="hljs-keyword">KEY</span>,
+    seller_id <span class="hljs-built_in">INTEGER</span> <span class="hljs-keyword">REFERENCES</span> <span class="hljs-keyword">users</span>(<span class="hljs-keyword">id</span>),
+    buyer_id <span class="hljs-built_in">INTEGER</span> <span class="hljs-keyword">REFERENCES</span> <span class="hljs-keyword">users</span>(<span class="hljs-keyword">id</span>),
+    energy_amount <span class="hljs-built_in">FLOAT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    price_per_unit <span class="hljs-built_in">FLOAT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    total_amount <span class="hljs-built_in">FLOAT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    energy_type energy_type_enum <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    transaction_status transaction_status_enum <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    delivery_time_start <span class="hljs-built_in">TIMESTAMP</span>,
+    delivery_time_end <span class="hljs-built_in">TIMESTAMP</span>,
+    blockchain_tx_hash <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">66</span>),
+    created_at <span class="hljs-built_in">TIMESTAMP</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NOW</span>(),
+    updated_at <span class="hljs-built_in">TIMESTAMP</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NOW</span>()
+);
+</div></code></pre>
+<h4 id="iot-devices-table">IoT Devices Table</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> iot_devices (
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">SERIAL</span> PRIMARY <span class="hljs-keyword">KEY</span>,
+    user_id <span class="hljs-built_in">INTEGER</span> <span class="hljs-keyword">REFERENCES</span> <span class="hljs-keyword">users</span>(<span class="hljs-keyword">id</span>),
+    device_name <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    device_type device_type_enum <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    device_id <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    energy_capacity <span class="hljs-built_in">FLOAT</span>,
+    current_energy <span class="hljs-built_in">FLOAT</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+    location <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>),
+    device_status device_status_enum <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">'active'</span>,
+    last_reading_at <span class="hljs-built_in">TIMESTAMP</span>,
+    created_at <span class="hljs-built_in">TIMESTAMP</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NOW</span>(),
+    updated_at <span class="hljs-built_in">TIMESTAMP</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NOW</span>()
+);
+</div></code></pre>
+<h4 id="communities-table">Communities Table</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> communities (
+    <span class="hljs-keyword">id</span> <span class="hljs-built_in">SERIAL</span> PRIMARY <span class="hljs-keyword">KEY</span>,
+    <span class="hljs-keyword">name</span> <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    description <span class="hljs-built_in">TEXT</span>,
+    community_type community_type_enum <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    creator_id <span class="hljs-built_in">INTEGER</span> <span class="hljs-keyword">REFERENCES</span> <span class="hljs-keyword">users</span>(<span class="hljs-keyword">id</span>),
+    location <span class="hljs-built_in">VARCHAR</span>(<span class="hljs-number">255</span>),
+    max_members <span class="hljs-built_in">INTEGER</span>,
+    total_energy_capacity <span class="hljs-built_in">FLOAT</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+    total_current_energy <span class="hljs-built_in">FLOAT</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-number">0</span>,
+    is_active <span class="hljs-built_in">BOOLEAN</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-literal">TRUE</span>,
+    created_at <span class="hljs-built_in">TIMESTAMP</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NOW</span>(),
+    updated_at <span class="hljs-built_in">TIMESTAMP</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NOW</span>()
+);
+</div></code></pre>
+<h3 id="indexes">Indexes</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">-- Performance indexes</span>
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_users_email <span class="hljs-keyword">ON</span> <span class="hljs-keyword">users</span>(email);
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_users_username <span class="hljs-keyword">ON</span> <span class="hljs-keyword">users</span>(username);
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_energy_transactions_seller <span class="hljs-keyword">ON</span> energy_transactions(seller_id);
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_energy_transactions_buyer <span class="hljs-keyword">ON</span> energy_transactions(buyer_id);
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_energy_transactions_status <span class="hljs-keyword">ON</span> energy_transactions(transaction_status);
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_iot_devices_user <span class="hljs-keyword">ON</span> iot_devices(user_id);
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_iot_devices_type <span class="hljs-keyword">ON</span> iot_devices(device_type);
+<span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> idx_communities_creator <span class="hljs-keyword">ON</span> communities(creator_id);
+</div></code></pre>
+<hr>
+<h2 id="api-documentation">API Documentation</h2>
+<h3 id="authentication-flow">Authentication Flow</h3>
+<pre><code class="language-mermaid"><div class="mermaid">sequenceDiagram
+    participant Client
+    participant Backend
+    participant Database
+    
+    Client->>Backend: POST /auth/register
+    Backend->>Database: Create user record
+    Database-->>Backend: User created
+    Backend-->>Client: User registration successful
+    
+    Client->>Backend: POST /auth/login
+    Backend->>Database: Validate credentials
+    Database-->>Backend: User validated
+    Backend-->>Client: JWT token + refresh token
+    
+    Client->>Backend: API request with JWT
+    Backend->>Backend: Validate JWT
+    Backend-->>Client: API response
+</div></code></pre>
+<h3 id="trading-flow">Trading Flow</h3>
+<pre><code class="language-mermaid"><div class="mermaid">sequenceDiagram
+    participant Seller
+    participant Backend
+    participant TradingService
+    participant Blockchain
+    participant Buyer
+    
+    Seller->>Backend: POST /energy-trading/offers
+    Backend->>TradingService: Create energy offer
+    TradingService->>Blockchain: Record offer on blockchain
+    TradingService-->>Backend: Offer created
+    Backend-->>Seller: Offer confirmation
+    
+    Buyer->>Backend: POST /energy-trading/transactions
+    Backend->>TradingService: Match with offers
+    TradingService->>Blockchain: Execute smart contract
+    Blockchain-->>TradingService: Transaction confirmed
+    TradingService-->>Backend: Transaction successful
+    Backend-->>Buyer: Transaction confirmation
+    Backend-->>Seller: Sale notification
+</div></code></pre>
+<h3 id="error-handling">Error Handling</h3>
+<p>All APIs follow consistent error response format:</p>
+<pre class="hljs"><code><div>{
+    <span class="hljs-attr">"error"</span>: {
+        <span class="hljs-attr">"code"</span>: <span class="hljs-string">"VALIDATION_ERROR"</span>,
+        <span class="hljs-attr">"message"</span>: <span class="hljs-string">"Invalid input data"</span>,
+        <span class="hljs-attr">"details"</span>: {
+            <span class="hljs-attr">"field"</span>: <span class="hljs-string">"energy_amount"</span>,
+            <span class="hljs-attr">"issue"</span>: <span class="hljs-string">"Must be greater than 0"</span>
+        }
+    }
+}
+</div></code></pre>
+<h3 id="rate-limiting">Rate Limiting</h3>
+<p>API endpoints are rate-limited:</p>
+<ul>
+<li><strong>Authentication</strong>: 5 requests per minute</li>
+<li><strong>Trading</strong>: 100 requests per minute</li>
+<li><strong>Data queries</strong>: 1000 requests per minute</li>
+<li><strong>WebSocket</strong>: 10 connections per user</li>
+</ul>
+<hr>
+<h2 id="configuration">Configuration</h2>
+<h3 id="environment-variables">Environment Variables</h3>
+<h4 id="core-configuration">Core Configuration</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Application</span>
+APP_NAME=PowerShare
+ENVIRONMENT=development
+DEBUG=<span class="hljs-literal">true</span>
+SECRET_KEY=your-secret-key-change-in-production
+
+<span class="hljs-comment"># Database</span>
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/powershare
+REDIS_URL=redis://localhost:6379
+
+<span class="hljs-comment"># Security</span>
+ACCESS_TOKEN_EXPIRE_MINUTES=10080  <span class="hljs-comment"># 7 days</span>
+ALGORITHM=HS256
+BACKEND_CORS_ORIGINS=[<span class="hljs-string">"http://localhost:3000"</span>,<span class="hljs-string">"http://localhost:8000"</span>]
+</div></code></pre>
+<h4 id="external-services">External Services</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># OpenAI API</span>
+OPENAI_API_KEY=your-openai-api-key
+
+<span class="hljs-comment"># Email (SMTP)</span>
+SMTP_SERVER=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USERNAME=your-email@gmail.com
+SMTP_PASSWORD=your-app-password
+
+<span class="hljs-comment"># Twilio (SMS)</span>
+TWILIO_ACCOUNT_SID=your-twilio-account-sid
+TWILIO_AUTH_TOKEN=your-twilio-auth-token
+TWILIO_PHONE_NUMBER=your-twilio-phone-number
+
+<span class="hljs-comment"># Firebase (Push notifications)</span>
+FIREBASE_CREDENTIALS_PATH=/app/firebase-credentials.json
+
+<span class="hljs-comment"># Blockchain</span>
+ETHEREUM_RPC_URL=http://localhost:8545
+PRIVATE_KEY=your-ethereum-private-key
+CONTRACT_ADDRESS=your-deployed-contract-address
+
+<span class="hljs-comment"># Beckn Protocol</span>
+BECKN_GATEWAY_URL=https://gateway.beckn.org
+BECKN_PARTICIPANT_ID=powershare-energy-platform
+BECKN_PRIVATE_KEY=your-beckn-private-key
+</div></code></pre>
+<h4 id="microservices-urls">Microservices URLs</h4>
+<pre class="hljs"><code><div>TRADING_SERVICE_URL=http://localhost:8001
+IOT_SERVICE_URL=http://localhost:8002
+ANALYTICS_SERVICE_URL=http://localhost:8003
+NOTIFICATIONS_SERVICE_URL=http://localhost:8004
+AI_AGENTS_URL=http://localhost:8005
+</div></code></pre>
+<h4 id="frontend-configuration">Frontend Configuration</h4>
+<pre class="hljs"><code><div>VITE_API_URL=http://localhost:8000
+VITE_WS_URL=ws://localhost:8000/ws
+</div></code></pre>
+<h3 id="docker-compose-configuration">Docker Compose Configuration</h3>
+<p>The <code>docker-compose.yml</code> file defines all services:</p>
+<ul>
+<li><strong>postgres</strong>: TimescaleDB for time-series data</li>
+<li><strong>redis</strong>: Caching and session storage</li>
+<li><strong>backend</strong>: Main FastAPI application</li>
+<li><strong>frontend</strong>: React application</li>
+<li><strong>ai-agents</strong>: AI agents service</li>
+<li><strong>trading-service</strong>: Trading microservice</li>
+<li><strong>iot-service</strong>: IoT microservice</li>
+<li><strong>analytics-service</strong>: Analytics microservice</li>
+<li><strong>notifications-service</strong>: Notifications microservice</li>
+<li><strong>mosquitto</strong>: MQTT broker for IoT</li>
+<li><strong>ganache</strong>: Ethereum development blockchain</li>
+<li><strong>nginx</strong>: Reverse proxy</li>
+<li><strong>prometheus</strong>: Monitoring</li>
+<li><strong>grafana</strong>: Dashboards</li>
+</ul>
+<hr>
+<h2 id="deployment">Deployment</h2>
+<h3 id="local-development">Local Development</h3>
+<h4 id="prerequisites">Prerequisites</h4>
+<ul>
+<li>Python 3.11+</li>
+<li>Node.js 18+</li>
+<li>Docker and Docker Compose</li>
+<li>PostgreSQL (if not using Docker)</li>
+<li>Redis (if not using Docker)</li>
+</ul>
+<h4 id="quick-start">Quick Start</h4>
+<ol>
+<li>
+<p><strong>Clone the repository</strong></p>
+<pre class="hljs"><code><div>git <span class="hljs-built_in">clone</span> &lt;repository-url&gt;
+<span class="hljs-built_in">cd</span> powershare-platform
+</div></code></pre>
+</li>
+<li>
+<p><strong>Setup environment</strong></p>
+<pre class="hljs"><code><div>cp .env.template .env
+<span class="hljs-comment"># Edit .env with your configuration</span>
+</div></code></pre>
+</li>
+<li>
+<p><strong>Start with Docker Compose</strong></p>
+<pre class="hljs"><code><div>docker-compose up --build
+</div></code></pre>
+</li>
+<li>
+<p><strong>Or run services individually</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Backend</span>
+<span class="hljs-built_in">cd</span> backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+<span class="hljs-comment"># Frontend</span>
+<span class="hljs-built_in">cd</span> frontend
+npm install
+npm run dev
+</div></code></pre>
+</li>
+</ol>
+<h4 id="access-points">Access Points</h4>
+<ul>
+<li><strong>Frontend</strong>: http://localhost:3000</li>
+<li><strong>Backend API</strong>: http://localhost:8000</li>
+<li><strong>API Documentation</strong>: http://localhost:8000/docs</li>
+<li><strong>Grafana</strong>: http://localhost:3001</li>
+<li><strong>Prometheus</strong>: http://localhost:9090</li>
+</ul>
+<h3 id="production-deployment">Production Deployment</h3>
+<h4 id="kubernetes-deployment">Kubernetes Deployment</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># deployment.yaml</span>
+<span class="hljs-attr">apiVersion:</span> <span class="hljs-string">apps/v1</span>
+<span class="hljs-attr">kind:</span> <span class="hljs-string">Deployment</span>
+<span class="hljs-attr">metadata:</span>
+  <span class="hljs-attr">name:</span> <span class="hljs-string">powershare-backend</span>
+<span class="hljs-attr">spec:</span>
+  <span class="hljs-attr">replicas:</span> <span class="hljs-number">3</span>
+  <span class="hljs-attr">selector:</span>
+    <span class="hljs-attr">matchLabels:</span>
+      <span class="hljs-attr">app:</span> <span class="hljs-string">powershare-backend</span>
+  <span class="hljs-attr">template:</span>
+    <span class="hljs-attr">metadata:</span>
+      <span class="hljs-attr">labels:</span>
+        <span class="hljs-attr">app:</span> <span class="hljs-string">powershare-backend</span>
+    <span class="hljs-attr">spec:</span>
+      <span class="hljs-attr">containers:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">backend</span>
+        <span class="hljs-attr">image:</span> <span class="hljs-string">powershare/backend:latest</span>
+        <span class="hljs-attr">ports:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">containerPort:</span> <span class="hljs-number">8000</span>
+        <span class="hljs-attr">env:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">DATABASE_URL</span>
+          <span class="hljs-attr">valueFrom:</span>
+            <span class="hljs-attr">secretKeyRef:</span>
+              <span class="hljs-attr">name:</span> <span class="hljs-string">powershare-secrets</span>
+              <span class="hljs-attr">key:</span> <span class="hljs-string">database-url</span>
+</div></code></pre>
+<h4 id="helm-chart">Helm Chart</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># values.yaml</span>
+<span class="hljs-attr">replicaCount:</span> <span class="hljs-number">3</span>
+
+<span class="hljs-attr">image:</span>
+  <span class="hljs-attr">repository:</span> <span class="hljs-string">powershare/backend</span>
+  <span class="hljs-attr">tag:</span> <span class="hljs-string">latest</span>
+  <span class="hljs-attr">pullPolicy:</span> <span class="hljs-string">IfNotPresent</span>
+
+<span class="hljs-attr">service:</span>
+  <span class="hljs-attr">type:</span> <span class="hljs-string">LoadBalancer</span>
+  <span class="hljs-attr">port:</span> <span class="hljs-number">80</span>
+  <span class="hljs-attr">targetPort:</span> <span class="hljs-number">8000</span>
+
+<span class="hljs-attr">ingress:</span>
+  <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">className:</span> <span class="hljs-string">nginx</span>
+  <span class="hljs-attr">hosts:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">host:</span> <span class="hljs-string">api.powershare.com</span>
+      <span class="hljs-attr">paths:</span>
+        <span class="hljs-bullet">-</span> <span class="hljs-attr">path:</span> <span class="hljs-string">/</span>
+          <span class="hljs-attr">pathType:</span> <span class="hljs-string">Prefix</span>
+</div></code></pre>
+<h4 id="cicd-pipeline">CI/CD Pipeline</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># .github/workflows/deploy.yml</span>
+<span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">to</span> <span class="hljs-string">Production</span>
+<span class="hljs-attr">on:</span>
+  <span class="hljs-attr">push:</span>
+    <span class="hljs-attr">branches:</span> <span class="hljs-string">[main]</span>
+
+<span class="hljs-attr">jobs:</span>
+  <span class="hljs-attr">deploy:</span>
+    <span class="hljs-attr">runs-on:</span> <span class="hljs-string">ubuntu-latest</span>
+    <span class="hljs-attr">steps:</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">uses:</span> <span class="hljs-string">actions/checkout@v3</span>
+    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Build</span> <span class="hljs-string">and</span> <span class="hljs-string">push</span> <span class="hljs-string">Docker</span> <span class="hljs-string">images</span>
+      <span class="hljs-attr">run:</span> <span class="hljs-string">|
+        docker build -t powershare/backend:${{ github.sha }} ./backend
+        docker push powershare/backend:${{ github.sha }}
+</span>    <span class="hljs-bullet">-</span> <span class="hljs-attr">name:</span> <span class="hljs-string">Deploy</span> <span class="hljs-string">to</span> <span class="hljs-string">Kubernetes</span>
+      <span class="hljs-attr">run:</span> <span class="hljs-string">|
+        kubectl set image deployment/powershare-backend backend=powershare/backend:${{ github.sha }}
+</span></div></code></pre>
+<hr>
+<h2 id="development-guide">Development Guide</h2>
+<h3 id="getting-started">Getting Started</h3>
+<h4 id="backend-development">Backend Development</h4>
+<ol>
+<li>
+<p><strong>Setup virtual environment</strong></p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> backend
+python -m venv venv
+<span class="hljs-built_in">source</span> venv/bin/activate  <span class="hljs-comment"># On Windows: venv\Scripts\activate</span>
+pip install -r requirements.txt
+</div></code></pre>
+</li>
+<li>
+<p><strong>Database setup</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment"># Run migrations</span>
+alembic upgrade head
+
+<span class="hljs-comment"># Create test data</span>
+python scripts/seed_data.py
+</div></code></pre>
+</li>
+<li>
+<p><strong>Run development server</strong></p>
+<pre class="hljs"><code><div>uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+</div></code></pre>
+</li>
+</ol>
+<h4 id="frontend-development">Frontend Development</h4>
+<ol>
+<li>
+<p><strong>Install dependencies</strong></p>
+<pre class="hljs"><code><div><span class="hljs-built_in">cd</span> frontend
+npm install
+</div></code></pre>
+</li>
+<li>
+<p><strong>Start development server</strong></p>
+<pre class="hljs"><code><div>npm run dev
+</div></code></pre>
+</li>
+<li>
+<p><strong>Build for production</strong></p>
+<pre class="hljs"><code><div>npm run build
+</div></code></pre>
+</li>
+</ol>
+<h3 id="code-style-and-standards">Code Style and Standards</h3>
+<h4 id="python-backend">Python (Backend)</h4>
+<ul>
+<li><strong>PEP 8</strong> compliance</li>
+<li><strong>Type hints</strong> for all functions</li>
+<li><strong>Docstrings</strong> for all public functions</li>
+<li><strong>Black</strong> for code formatting</li>
+<li><strong>isort</strong> for import sorting</li>
+</ul>
+<h4 id="typescript-frontend">TypeScript (Frontend)</h4>
+<ul>
+<li><strong>ESLint</strong> for linting</li>
+<li><strong>Prettier</strong> for code formatting</li>
+<li><strong>Strict TypeScript</strong> configuration</li>
+<li><strong>Component documentation</strong></li>
+</ul>
+<h4 id="git-workflow">Git Workflow</h4>
+<ul>
+<li><strong>Feature branches</strong> for all development</li>
+<li><strong>Pull requests</strong> for code review</li>
+<li><strong>Conventional commits</strong> for commit messages</li>
+<li><strong>Automated testing</strong> on PR</li>
+</ul>
+<h3 id="database-migrations">Database Migrations</h3>
+<h4 id="creating-migrations">Creating Migrations</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Auto-generate migration</span>
+alembic revision --autogenerate -m <span class="hljs-string">"Add user energy tracking"</span>
+
+<span class="hljs-comment"># Create empty migration</span>
+alembic revision -m <span class="hljs-string">"Custom migration"</span>
+</div></code></pre>
+<h4 id="running-migrations">Running Migrations</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Upgrade to latest</span>
+alembic upgrade head
+
+<span class="hljs-comment"># Downgrade one version</span>
+alembic downgrade -1
+
+<span class="hljs-comment"># Show current version</span>
+alembic current
+</div></code></pre>
+<h3 id="api-testing">API Testing</h3>
+<h4 id="using-pytest">Using pytest</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Run all tests</span>
+pytest
+
+<span class="hljs-comment"># Run with coverage</span>
+pytest --cov=app tests/
+
+<span class="hljs-comment"># Run specific test file</span>
+pytest tests/test_energy_trading.py
+</div></code></pre>
+<h4 id="test-examples">Test Examples</h4>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_create_energy_offer</span><span class="hljs-params">()</span>:</span>
+    response = client.post(
+        <span class="hljs-string">"/api/v1/energy-trading/offers"</span>,
+        json={
+            <span class="hljs-string">"energy_amount"</span>: <span class="hljs-number">50.0</span>,
+            <span class="hljs-string">"price_per_unit"</span>: <span class="hljs-number">0.25</span>,
+            <span class="hljs-string">"renewable_source"</span>: <span class="hljs-literal">True</span>
+        },
+        headers={<span class="hljs-string">"Authorization"</span>: <span class="hljs-string">f"Bearer <span class="hljs-subst">{token}</span>"</span>}
+    )
+    <span class="hljs-keyword">assert</span> response.status_code == <span class="hljs-number">201</span>
+    <span class="hljs-keyword">assert</span> response.json()[<span class="hljs-string">"energy_amount"</span>] == <span class="hljs-number">50.0</span>
+</div></code></pre>
+<hr>
+<h2 id="testing">Testing</h2>
+<h3 id="backend-testing">Backend Testing</h3>
+<h4 id="unit-tests">Unit Tests</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># test_energy_trading.py</span>
+<span class="hljs-keyword">import</span> pytest
+<span class="hljs-keyword">from</span> app.models.energy_transaction <span class="hljs-keyword">import</span> EnergyTransaction
+<span class="hljs-keyword">from</span> app.services.trading_service <span class="hljs-keyword">import</span> TradingService
+
+<span class="hljs-meta">@pytest.fixture</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">trading_service</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-keyword">return</span> TradingService()
+
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_create_energy_offer</span><span class="hljs-params">(trading_service)</span>:</span>
+    offer = trading_service.create_offer(
+        user_id=<span class="hljs-number">1</span>,
+        energy_amount=<span class="hljs-number">100.0</span>,
+        price_per_unit=<span class="hljs-number">0.25</span>
+    )
+    <span class="hljs-keyword">assert</span> offer.energy_amount == <span class="hljs-number">100.0</span>
+    <span class="hljs-keyword">assert</span> offer.price_per_unit == <span class="hljs-number">0.25</span>
+</div></code></pre>
+<h4 id="integration-tests">Integration Tests</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># test_api_integration.py</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">test_energy_trading_flow</span><span class="hljs-params">(client, db_session)</span>:</span>
+    <span class="hljs-comment"># Create user</span>
+    user = create_test_user()
+    
+    <span class="hljs-comment"># Create energy offer</span>
+    offer_response = client.post(
+        <span class="hljs-string">"/api/v1/energy-trading/offers"</span>,
+        json={<span class="hljs-string">"energy_amount"</span>: <span class="hljs-number">50.0</span>, <span class="hljs-string">"price_per_unit"</span>: <span class="hljs-number">0.25</span>},
+        headers=auth_headers(user)
+    )
+    <span class="hljs-keyword">assert</span> offer_response.status_code == <span class="hljs-number">201</span>
+    
+    <span class="hljs-comment"># Create transaction</span>
+    transaction_response = client.post(
+        <span class="hljs-string">"/api/v1/energy-trading/transactions"</span>,
+        json={<span class="hljs-string">"offer_id"</span>: offer_response.json()[<span class="hljs-string">"id"</span>]},
+        headers=auth_headers(user)
+    )
+    <span class="hljs-keyword">assert</span> transaction_response.status_code == <span class="hljs-number">201</span>
+</div></code></pre>
+<h3 id="frontend-testing">Frontend Testing</h3>
+<h4 id="component-tests">Component Tests</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">// EnergyMarketplace.test.tsx</span>
+<span class="hljs-keyword">import</span> { render, screen } <span class="hljs-keyword">from</span> <span class="hljs-string">'@testing-library/react'</span>;
+<span class="hljs-keyword">import</span> { EnergyMarketplace } <span class="hljs-keyword">from</span> <span class="hljs-string">'./EnergyMarketplace'</span>;
+
+describe(<span class="hljs-string">'EnergyMarketplace'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+  it(<span class="hljs-string">'renders energy offers'</span>, <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+    render(&lt;EnergyMarketplace /&gt;);
+    expect(screen.getByText(<span class="hljs-string">'Energy Offers'</span>)).toBeInTheDocument();
+  });
+  
+  it(<span class="hljs-string">'handles offer creation'</span>, <span class="hljs-keyword">async</span> () =&gt; {
+    render(&lt;EnergyMarketplace /&gt;);
+    <span class="hljs-comment">// Test offer creation flow</span>
+  });
+});
+</div></code></pre>
+<h4 id="e2e-tests">E2E Tests</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">// e2e/energy-trading.spec.ts</span>
+<span class="hljs-keyword">import</span> { test, expect } <span class="hljs-keyword">from</span> <span class="hljs-string">'@playwright/test'</span>;
+
+test(<span class="hljs-string">'complete energy trading flow'</span>, <span class="hljs-keyword">async</span> ({ page }) =&gt; {
+  <span class="hljs-keyword">await</span> page.goto(<span class="hljs-string">'/marketplace'</span>);
+  
+  <span class="hljs-comment">// Create energy offer</span>
+  <span class="hljs-keyword">await</span> page.fill(<span class="hljs-string">'[data-testid="energy-amount"]'</span>, <span class="hljs-string">'50'</span>);
+  <span class="hljs-keyword">await</span> page.fill(<span class="hljs-string">'[data-testid="price-per-unit"]'</span>, <span class="hljs-string">'0.25'</span>);
+  <span class="hljs-keyword">await</span> page.click(<span class="hljs-string">'[data-testid="create-offer"]'</span>);
+  
+  <span class="hljs-comment">// Verify offer creation</span>
+  <span class="hljs-keyword">await</span> expect(page.locator(<span class="hljs-string">'[data-testid="offer-created"]'</span>)).toBeVisible();
+});
+</div></code></pre>
+<h3 id="performance-testing">Performance Testing</h3>
+<h4 id="load-testing">Load Testing</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># locust_test.py</span>
+<span class="hljs-keyword">from</span> locust <span class="hljs-keyword">import</span> HttpUser, task, between
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PowerShareUser</span><span class="hljs-params">(HttpUser)</span>:</span>
+    wait_time = between(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>)
+    
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">on_start</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-comment"># Login</span>
+        response = self.client.post(<span class="hljs-string">"/api/v1/auth/login"</span>, json={
+            <span class="hljs-string">"username"</span>: <span class="hljs-string">"testuser"</span>,
+            <span class="hljs-string">"password"</span>: <span class="hljs-string">"testpass"</span>
+        })
+        self.token = response.json()[<span class="hljs-string">"access_token"</span>]
+        self.headers = {<span class="hljs-string">"Authorization"</span>: <span class="hljs-string">f"Bearer <span class="hljs-subst">{self.token}</span>"</span>}
+    
+<span class="hljs-meta">    @task(3)</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">view_marketplace</span><span class="hljs-params">(self)</span>:</span>
+        self.client.get(<span class="hljs-string">"/api/v1/energy-trading/offers"</span>, headers=self.headers)
+    
+<span class="hljs-meta">    @task(1)</span>
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">create_offer</span><span class="hljs-params">(self)</span>:</span>
+        self.client.post(<span class="hljs-string">"/api/v1/energy-trading/offers"</span>, json={
+            <span class="hljs-string">"energy_amount"</span>: <span class="hljs-number">50.0</span>,
+            <span class="hljs-string">"price_per_unit"</span>: <span class="hljs-number">0.25</span>
+        }, headers=self.headers)
+</div></code></pre>
+<hr>
+<h2 id="security">Security</h2>
+<h3 id="authentication--authorization">Authentication &amp; Authorization</h3>
+<h4 id="jwt-implementation">JWT Implementation</h4>
+<ul>
+<li><strong>Access tokens</strong>: Short-lived (15 minutes)</li>
+<li><strong>Refresh tokens</strong>: Long-lived (7 days)</li>
+<li><strong>Secure storage</strong>: HttpOnly cookies for web</li>
+<li><strong>Token rotation</strong>: Automatic refresh token rotation</li>
+</ul>
+<h4 id="role-based-access-control">Role-Based Access Control</h4>
+<pre class="hljs"><code><div><span class="hljs-keyword">from</span> enum <span class="hljs-keyword">import</span> Enum
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserRole</span><span class="hljs-params">(str, Enum)</span>:</span>
+    ADMIN = <span class="hljs-string">"admin"</span>
+    PROSUMER = <span class="hljs-string">"prosumer"</span>
+    CONSUMER = <span class="hljs-string">"consumer"</span>
+    UTILITY = <span class="hljs-string">"utility"</span>
+
+<span class="hljs-meta">@router.get("/admin/users")</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_all_users</span><span class="hljs-params">(
+    current_user: User = Depends<span class="hljs-params">(get_current_user)</span>,
+    required_role: UserRole = UserRole.ADMIN
+)</span>:</span>
+    <span class="hljs-keyword">if</span> current_user.role != required_role:
+        <span class="hljs-keyword">raise</span> HTTPException(status_code=<span class="hljs-number">403</span>, detail=<span class="hljs-string">"Insufficient permissions"</span>)
+    <span class="hljs-comment"># ... implementation</span>
+</div></code></pre>
+<h3 id="data-protection">Data Protection</h3>
+<h4 id="encryption">Encryption</h4>
+<ul>
+<li><strong>At rest</strong>: Database encryption with AES-256</li>
+<li><strong>In transit</strong>: TLS 1.3 for all communications</li>
+<li><strong>Sensitive data</strong>: Additional encryption for PII</li>
+</ul>
+<h4 id="privacy-controls">Privacy Controls</h4>
+<ul>
+<li><strong>Data anonymization</strong>: Remove PII from analytics</li>
+<li><strong>Consent management</strong>: User control over data sharing</li>
+<li><strong>Right to deletion</strong>: GDPR compliance</li>
+</ul>
+<h3 id="security-headers">Security Headers</h3>
+<pre class="hljs"><code><div><span class="hljs-comment"># Security middleware</span>
+app.add_middleware(
+    SecurityHeadersMiddleware,
+    csp=<span class="hljs-string">"default-src 'self'"</span>,
+    hsts=<span class="hljs-literal">True</span>,
+    xframe_options=<span class="hljs-string">"DENY"</span>,
+    xss_protection=<span class="hljs-literal">True</span>,
+    content_type_options=<span class="hljs-literal">True</span>
+)
+</div></code></pre>
+<h3 id="blockchain-security">Blockchain Security</h3>
+<h4 id="smart-contract-security">Smart Contract Security</h4>
+<ul>
+<li><strong>Reentrancy protection</strong>: OpenZeppelin ReentrancyGuard</li>
+<li><strong>Access control</strong>: Role-based contract permissions</li>
+<li><strong>Upgrade patterns</strong>: Proxy contracts for upgradability</li>
+<li><strong>Audit trails</strong>: All transactions logged</li>
+</ul>
+<h4 id="wallet-security">Wallet Security</h4>
+<ul>
+<li><strong>Hardware wallet support</strong>: Ledger, Trezor integration</li>
+<li><strong>Multi-signature</strong>: Community wallet protection</li>
+<li><strong>Private key management</strong>: Never store private keys</li>
+</ul>
+<hr>
+<h2 id="performance">Performance</h2>
+<h3 id="backend-optimization">Backend Optimization</h3>
+<h4 id="database-optimization">Database Optimization</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Efficient queries with indexes</span>
+<span class="hljs-meta">@router.get("/energy-trading/offers")</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_energy_offers</span><span class="hljs-params">(
+    limit: int = <span class="hljs-number">50</span>,
+    offset: int = <span class="hljs-number">0</span>,
+    db: AsyncSession = Depends<span class="hljs-params">(get_db)</span>
+)</span>:</span>
+    query = select(EnergyOffer).options(
+        selectinload(EnergyOffer.seller)
+    ).limit(limit).offset(offset)
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> db.execute(query)
+</div></code></pre>
+<h4 id="caching-strategy">Caching Strategy</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Redis caching for frequently accessed data</span>
+<span class="hljs-meta">@cache(expire=300)  # 5 minutes</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">get_market_stats</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-comment"># Expensive calculation</span>
+    <span class="hljs-keyword">return</span> market_statistics
+</div></code></pre>
+<h4 id="async-processing">Async Processing</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Background tasks for heavy operations</span>
+<span class="hljs-meta">@router.post("/analytics/generate-report")</span>
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">generate_report</span><span class="hljs-params">(
+    background_tasks: BackgroundTasks,
+    user_id: int
+)</span>:</span>
+    background_tasks.add_task(generate_user_report, user_id)
+    <span class="hljs-keyword">return</span> {<span class="hljs-string">"message"</span>: <span class="hljs-string">"Report generation started"</span>}
+</div></code></pre>
+<h3 id="frontend-optimization">Frontend Optimization</h3>
+<h4 id="code-splitting">Code Splitting</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">// Lazy loading for pages</span>
+<span class="hljs-keyword">const</span> Dashboard = lazy(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'./pages/Dashboard'</span>));
+<span class="hljs-keyword">const</span> EnergyMarketplace = lazy(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">'./pages/EnergyMarketplace'</span>));
+
+<span class="hljs-comment">// Route-based code splitting</span>
+&lt;Route path=<span class="hljs-string">"/dashboard"</span> element={&lt;Suspense fallback={&lt;Loading /&gt;}&gt;&lt;Dashboard /&gt;&lt;<span class="hljs-regexp">/Suspense&gt;} /</span>&gt;
+</div></code></pre>
+<h4 id="state-management">State Management</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">// React Query for efficient API state</span>
+<span class="hljs-keyword">const</span> { data: energyOffers, isLoading } = useQuery({
+  queryKey: [<span class="hljs-string">'energyOffers'</span>],
+  queryFn: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> apiService.getEnergyOffers(),
+  staleTime: <span class="hljs-number">5</span> * <span class="hljs-number">60</span> * <span class="hljs-number">1000</span>, <span class="hljs-comment">// 5 minutes</span>
+});
+</div></code></pre>
+<h4 id="bundle-optimization">Bundle Optimization</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">// Vite configuration</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> defineConfig({
+  <span class="hljs-attr">build</span>: {
+    <span class="hljs-attr">rollupOptions</span>: {
+      <span class="hljs-attr">output</span>: {
+        <span class="hljs-attr">manualChunks</span>: {
+          <span class="hljs-attr">vendor</span>: [<span class="hljs-string">'react'</span>, <span class="hljs-string">'react-dom'</span>],
+          <span class="hljs-attr">charts</span>: [<span class="hljs-string">'recharts'</span>],
+          <span class="hljs-attr">utils</span>: [<span class="hljs-string">'date-fns'</span>, <span class="hljs-string">'axios'</span>]
+        }
+      }
+    }
+  }
+});
+</div></code></pre>
+<h3 id="monitoring--observability">Monitoring &amp; Observability</h3>
+<h4 id="prometheus-metrics">Prometheus Metrics</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Custom metrics</span>
+<span class="hljs-keyword">from</span> prometheus_client <span class="hljs-keyword">import</span> Counter, Histogram
+
+energy_trades_counter = Counter(<span class="hljs-string">'energy_trades_total'</span>, <span class="hljs-string">'Total energy trades'</span>)
+api_request_duration = Histogram(<span class="hljs-string">'api_request_duration_seconds'</span>, <span class="hljs-string">'API request duration'</span>)
+
+<span class="hljs-meta">@api_request_duration.time()</span>
+<span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">process_energy_trade</span><span class="hljs-params">()</span>:</span>
+    energy_trades_counter.inc()
+    <span class="hljs-comment"># Process trade</span>
+</div></code></pre>
+<h4 id="grafana-dashboards">Grafana Dashboards</h4>
+<ul>
+<li><strong>System metrics</strong>: CPU, memory, disk usage</li>
+<li><strong>Application metrics</strong>: Request rates, error rates</li>
+<li><strong>Business metrics</strong>: Trading volume, user growth</li>
+<li><strong>Alert rules</strong>: Automated alerting for issues</li>
+</ul>
+<hr>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<h4 id="database-connection-issues">Database Connection Issues</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Check database connection</span>
+psql -h localhost -U postgres -d powershare
+
+<span class="hljs-comment"># Check logs</span>
+docker logs powershare-postgres
+
+<span class="hljs-comment"># Reset database</span>
+docker-compose down -v
+docker-compose up postgres
+</div></code></pre>
+<h4 id="redis-connection-issues">Redis Connection Issues</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Check Redis connection</span>
+redis-cli ping
+
+<span class="hljs-comment"># Check Redis logs</span>
+docker logs powershare-redis
+
+<span class="hljs-comment"># Clear Redis cache</span>
+redis-cli flushall
+</div></code></pre>
+<h4 id="api-issues">API Issues</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Check API health</span>
+curl http://localhost:8000/api/v1/health
+
+<span class="hljs-comment"># Check API logs</span>
+docker logs powershare-backend
+
+<span class="hljs-comment"># Debug mode</span>
+DEBUG=<span class="hljs-literal">true</span> uvicorn app.main:app --reload
+</div></code></pre>
+<h4 id="frontend-issues">Frontend Issues</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Clear npm cache</span>
+npm cache clean --force
+
+<span class="hljs-comment"># Delete node_modules</span>
+rm -rf node_modules package-lock.json
+npm install
+
+<span class="hljs-comment"># Check for TypeScript errors</span>
+npm run <span class="hljs-built_in">type</span>-check
+</div></code></pre>
+<h3 id="debugging">Debugging</h3>
+<h4 id="backend-debugging">Backend Debugging</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Add logging</span>
+<span class="hljs-keyword">import</span> logging
+logger = logging.getLogger(__name__)
+
+<span class="hljs-keyword">async</span> <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">debug_energy_trading</span><span class="hljs-params">()</span>:</span>
+    logger.info(<span class="hljs-string">"Processing energy trade"</span>)
+    logger.debug(<span class="hljs-string">f"Trade data: <span class="hljs-subst">{trade_data}</span>"</span>)
+    <span class="hljs-comment"># Debug implementation</span>
+</div></code></pre>
+<h4 id="frontend-debugging">Frontend Debugging</h4>
+<pre class="hljs"><code><div><span class="hljs-comment">// React Query DevTools</span>
+<span class="hljs-keyword">import</span> { ReactQueryDevtools } <span class="hljs-keyword">from</span> <span class="hljs-string">'@tanstack/react-query-devtools'</span>;
+
+<span class="hljs-comment">// Add to App component</span>
+&lt;ReactQueryDevtools initialIsOpen={<span class="hljs-literal">false</span>} /&gt;
+</div></code></pre>
+<h3 id="performance-issues">Performance Issues</h3>
+<h4 id="slow-api-responses">Slow API Responses</h4>
+<ol>
+<li><strong>Check database queries</strong>: Use EXPLAIN ANALYZE</li>
+<li><strong>Add database indexes</strong>: For frequently queried columns</li>
+<li><strong>Implement caching</strong>: Redis for repeated queries</li>
+<li><strong>Optimize serialization</strong>: Use efficient data structures</li>
+</ol>
+<h4 id="high-memory-usage">High Memory Usage</h4>
+<ol>
+<li><strong>Check for memory leaks</strong>: Use profiling tools</li>
+<li><strong>Optimize database connections</strong>: Connection pooling</li>
+<li><strong>Clear caches</strong>: Regular cache cleanup</li>
+<li><strong>Monitor containers</strong>: Docker stats</li>
+</ol>
+<h4 id="frontend-performance">Frontend Performance</h4>
+<ol>
+<li><strong>Bundle analysis</strong>: Use webpack-bundle-analyzer</li>
+<li><strong>Lazy loading</strong>: Implement code splitting</li>
+<li><strong>Optimize images</strong>: Use WebP format</li>
+<li><strong>Minimize re-renders</strong>: Use React.memo</li>
+</ol>
+<hr>
+<h2 id="appendix">Appendix</h2>
+<h3 id="useful-commands">Useful Commands</h3>
+<h4 id="docker-commands">Docker Commands</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Build and start all services</span>
+docker-compose up --build
+
+<span class="hljs-comment"># Start specific service</span>
+docker-compose up postgres redis
+
+<span class="hljs-comment"># View logs</span>
+docker-compose logs -f backend
+
+<span class="hljs-comment"># Execute command in container</span>
+docker-compose <span class="hljs-built_in">exec</span> backend bash
+
+<span class="hljs-comment"># Remove all containers and volumes</span>
+docker-compose down -v
+</div></code></pre>
+<h4 id="database-commands">Database Commands</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Connect to database</span>
+psql -h localhost -U postgres -d powershare
+
+<span class="hljs-comment"># Run migrations</span>
+alembic upgrade head
+
+<span class="hljs-comment"># Create new migration</span>
+alembic revision --autogenerate -m <span class="hljs-string">"Description"</span>
+
+<span class="hljs-comment"># Seed test data</span>
+python scripts/seed_data.py
+</div></code></pre>
+<h4 id="api-testing-commands">API Testing Commands</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># Test authentication</span>
+curl -X POST http://localhost:8000/api/v1/auth/login \
+  -H <span class="hljs-string">"Content-Type: application/json"</span> \
+  -d <span class="hljs-string">'{"username": "testuser", "password": "testpass"}'</span>
+
+<span class="hljs-comment"># Test energy offer creation</span>
+curl -X POST http://localhost:8000/api/v1/energy-trading/offers \
+  -H <span class="hljs-string">"Authorization: Bearer YOUR_TOKEN"</span> \
+  -H <span class="hljs-string">"Content-Type: application/json"</span> \
+  -d <span class="hljs-string">'{"energy_amount": 50.0, "price_per_unit": 0.25}'</span>
+</div></code></pre>
+<h3 id="environment-setup-scripts">Environment Setup Scripts</h3>
+<h4 id="backend-setup">Backend Setup</h4>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-comment"># setup-backend.sh</span>
+
+<span class="hljs-comment"># Create virtual environment</span>
+python -m venv venv
+<span class="hljs-built_in">source</span> venv/bin/activate
+
+<span class="hljs-comment"># Install dependencies</span>
+pip install -r requirements.txt
+
+<span class="hljs-comment"># Setup database</span>
+alembic upgrade head
+
+<span class="hljs-comment"># Start development server</span>
+uvicorn app.main:app --reload
+</div></code></pre>
+<h4 id="frontend-setup">Frontend Setup</h4>
+<pre class="hljs"><code><div><span class="hljs-meta">#!/bin/bash</span>
+<span class="hljs-comment"># setup-frontend.sh</span>
+
+<span class="hljs-comment"># Install dependencies</span>
+npm install
+
+<span class="hljs-comment"># Start development server</span>
+npm run dev
+</div></code></pre>
+<h3 id="configuration-templates">Configuration Templates</h3>
+<h4 id="production-environment">Production Environment</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># .env.production</span>
+ENVIRONMENT=production
+DEBUG=<span class="hljs-literal">false</span>
+DATABASE_URL=postgresql://user:pass@prod-db:5432/powershare
+REDIS_URL=redis://prod-redis:6379
+SECRET_KEY=your-production-secret-key
+BACKEND_CORS_ORIGINS=[<span class="hljs-string">"https://powershare.com"</span>]
+</div></code></pre>
+<h4 id="development-environment">Development Environment</h4>
+<pre class="hljs"><code><div><span class="hljs-comment"># .env.development</span>
+ENVIRONMENT=development
+DEBUG=<span class="hljs-literal">true</span>
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/powershare
+REDIS_URL=redis://localhost:6379
+SECRET_KEY=development-secret-key
+BACKEND_CORS_ORIGINS=[<span class="hljs-string">"http://localhost:3000"</span>]
+</div></code></pre>
+<hr>
+<h2 id="contributing">Contributing</h2>
+<h3 id="development-workflow">Development Workflow</h3>
+<ol>
+<li><strong>Fork the repository</strong></li>
+<li><strong>Create feature branch</strong>: <code>git checkout -b feature/new-feature</code></li>
+<li><strong>Make changes and test</strong></li>
+<li><strong>Submit pull request</strong></li>
+</ol>
+<h3 id="code-review-process">Code Review Process</h3>
+<ul>
+<li>All code changes require review</li>
+<li>Automated tests must pass</li>
+<li>Code coverage must be maintained</li>
+<li>Documentation must be updated</li>
+</ul>
+<h3 id="release-process">Release Process</h3>
+<ol>
+<li><strong>Update version numbers</strong></li>
+<li><strong>Create release notes</strong></li>
+<li><strong>Tag release</strong>: <code>git tag v1.0.0</code></li>
+<li><strong>Deploy to staging</strong></li>
+<li><strong>Deploy to production</strong></li>
+</ol>
+<hr>
+<p><em>This documentation is maintained by the PowerShare development team. For questions or updates, please contact the maintainers.</em></p>
+<hr>
+<p><strong>Last Updated</strong>: July 4, 2025
+<strong>Version</strong>: 1.0.0
+<strong>Maintainers</strong>: PowerShare Development Team</p>
+
+</body>
+</html>

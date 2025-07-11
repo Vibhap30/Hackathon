@@ -1,0 +1,21 @@
+# Quantum Computing Requirements
+# These packages are for quantum computing features (future implementation)
+# Install only if quantum features are needed: pip install -r quantum_requirements.txt
+
+qiskit>=0.45.0
+qiskit-optimization>=0.6.0
+qiskit-algorithms>=0.2.0
+qiskit-machine-learning>=0.7.0
+pennylane>=0.33.0
+pennylane-qiskit>=0.33.0
+cirq>=1.2.0
+amazon-braket-sdk>=1.60.0
+
+# Post-quantum cryptography
+pqcrypto>=0.7.0
+cryptography>=41.0.0
+
+# Quantum simulation and optimization
+scipy>=1.11.0
+numpy>=1.24.0
+matplotlib>=3.7.0

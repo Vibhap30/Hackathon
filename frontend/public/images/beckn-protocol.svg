@@ -1,0 +1,96 @@
+<svg width="100%" height="100%" viewBox="0 0 100 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+  <!-- Background -->
+  <rect width="100" height="80" fill="url(#beckn-bg)" rx="8"/>
+  
+  <!-- Central Protocol Hub -->
+  <circle cx="50" cy="40" r="12" fill="url(#hub-gradient)" opacity="0.9"/>
+  <text x="50" y="43" text-anchor="middle" fill="white" font-size="6" font-weight="bold">BECKN</text>
+  
+  <!-- Connected Platforms -->
+  <rect x="20" y="18" width="15" height="10" fill="url(#platform-gradient)" rx="2"/>
+  <text x="27.5" y="24" text-anchor="middle" fill="white" font-size="4">PLATFORM A</text>
+  
+  <rect x="65" y="18" width="15" height="10" fill="url(#platform-gradient)" rx="2"/>
+  <text x="72.5" y="24" text-anchor="middle" fill="white" font-size="4">PLATFORM B</text>
+  
+  <rect x="20" y="52" width="15" height="10" fill="url(#platform-gradient)" rx="2"/>
+  <text x="27.5" y="58" text-anchor="middle" fill="white" font-size="4">PLATFORM C</text>
+  
+  <rect x="65" y="52" width="15" height="10" fill="url(#platform-gradient)" rx="2"/>
+  <text x="72.5" y="58" text-anchor="middle" fill="white" font-size="4">PLATFORM D</text>
+  
+  <!-- Connection Lines with Data Flow -->
+  <line x1="38" y1="32" x2="44" y2="35" stroke="url(#connection-flow)" stroke-width="2" opacity="0.8"/>
+  <line x1="56" y1="35" x2="62" y2="32" stroke="url(#connection-flow)" stroke-width="2" opacity="0.8"/>
+  <line x1="38" y1="48" x2="44" y2="45" stroke="url(#connection-flow)" stroke-width="2" opacity="0.8"/>
+  <line x1="56" y1="45" x2="62" y2="48" stroke="url(#connection-flow)" stroke-width="2" opacity="0.8"/>
+  
+  <!-- Data packets -->
+  <circle cx="40" cy="33" r="1.5" fill="url(#data-packet)"/>
+  <circle cx="60" cy="33" r="1.5" fill="url(#data-packet)"/>
+  <circle cx="40" cy="47" r="1.5" fill="url(#data-packet)"/>
+  <circle cx="60" cy="47" r="1.5" fill="url(#data-packet)"/>
+  
+  <!-- API endpoints -->
+  <circle cx="27.5" cy="12" r="4" fill="url(#api-gradient)"/>
+  <text x="27.5" y="14" text-anchor="middle" fill="white" font-size="3">API</text>
+  
+  <circle cx="72.5" cy="12" r="4" fill="url(#api-gradient)"/>
+  <text x="72.5" y="14" text-anchor="middle" fill="white" font-size="3">API</text>
+  
+  <circle cx="27.5" cy="68" r="4" fill="url(#api-gradient)"/>
+  <text x="27.5" y="70" text-anchor="middle" fill="white" font-size="3">API</text>
+  
+  <circle cx="72.5" cy="68" r="4" fill="url(#api-gradient)"/>
+  <text x="72.5" y="70" text-anchor="middle" fill="white" font-size="3">API</text>
+  
+  <defs>
+    <linearGradient id="beckn-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fff7ed;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#fed7aa;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="hub-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ea580c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="platform-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ef4444;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#dc2626;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="connection-flow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d97706;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="data-packet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="api-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
+    </linearGradient>
+    <linearGradient id="hub-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ea580c;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="platform-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1d4ed8;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="connection-flow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#10b981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="data-packet" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="api-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0891b2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>
