@@ -1,43 +1,53 @@
-import React from 'react'
+
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { 
-  BoltIcon, 
-  ChartBarIcon, 
-  CogIcon, 
+import {
+  BoltIcon,
+  Bars3Icon,
+  XMarkIcon,
   HomeIcon,
-  BuildingOfficeIcon,
+  ChartBarIcon,
   ShoppingCartIcon,
-  CpuChipIcon
+  BuildingOfficeIcon,
+  CpuChipIcon,
+  Cog6ToothIcon
 } from '@heroicons/react/24/outline'
 
 const Navbar: React.FC = () => {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   const navItems = [
     { name: 'Home', href: '/', icon: HomeIcon },
     { name: 'Dashboard', href: '/dashboard', icon: ChartBarIcon },
-    { name: 'Marketplace', href: '/marketplace', icon: ShoppingCartIcon },
-    { name: 'Community', href: '/community', icon: BuildingOfficeIcon },
+    { name: 'Marketplace Agent', href: '/marketplace', icon: ShoppingCartIcon },
+    { name: 'Community Agent', href: '/community', icon: BuildingOfficeIcon },
     { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
     { name: 'AI Assistant', href: '/ai-assistant', icon: CpuChipIcon },
     { name: 'Agents', href: '/agent-dashboard', icon: CpuChipIcon },
-    { name: 'Settings', href: '/settings', icon: CogIcon },
+    { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
   ]
 
   return (
     <nav className="bg-white/90 backdrop-blur-md shadow-lg sticky top-0 z-50 border-b border-green-100">
       <div className="container-main">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between items-center h-16 ml-[-3%]">
+
           {/* Logo */}
-          <div className="flex items-center">
-            <Link to="/" className="flex items-center space-x-3 group">
-              <div className="relative">
-                <BoltIcon className="logo-icon transition-all duration-300 group-hover:text-green-500 group-hover:scale-110" />
-                <div className="absolute inset-0 logo-icon text-green-400 opacity-0 group-hover:opacity-30 transition-opacity duration-300 animate-pulse-slow"></div>
-              </div>
-              <span className="text-xl font-bold text-gradient group-hover:scale-105 transition-transform duration-300">
-                PowerShare
-              </span>
-            </Link>
+          <Link to="/" className="flex items-center space-x-3 group">
+            <BoltIcon className="h-6 w-6 text-green-500" />
+            <span className="text-xl font-bold text-gradient">PowerShare</span>
+          </Link>
+
+          {/* Mobile Menu Toggle */}
+          <div className="md:hidden">
+            <button onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? (
+                <XMarkIcon className="h-6 w-6 text-green-600" />
+              ) : (
+                <Bars3Icon className="h-6 w-6 text-green-600" />
+              )}
+            </button>
           </div>
 
           {/* Navigation Links */}
@@ -46,25 +56,44 @@ const Navbar: React.FC = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className="flex items-center space-x-2 text-gray-700 hover:text-green-600 hover:bg-green-50 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 group"
+                className="flex items-center space-x-2 text-gray-700 hover:text-green-600 hover:bg-green-50 px-3 py-1 rounded-xl text-sm font-medium transition-all duration-200 group"
               >
-                <item.icon className="nav-icon group-hover:scale-110 transition-transform duration-200" />
-                <span>{item.name}</span>
+                <item.icon className="h-5 w-5 text-green-500" />
+                <span className="whitespace-nowrap">{item.name}</span>
               </Link>
             ))}
-          </div>
-
-          {/* User Menu */}
-          <div className="flex items-center space-x-4">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="btn-primary"
+              className="px-3 py-1.5 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg shadow-sm transition duration-200"
             >
-              Connect Wallet
+              Connect
             </motion.button>
           </div>
         </div>
+
+        {/* Mobile Menu */}
+        {menuOpen && (
+          <div className="md:hidden flex flex-col space-y-2 mt-2">
+            {navItems.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className="flex items-center space-x-2 text-gray-700 hover:text-green-600 hover:bg-green-50 px-4 py-2 rounded-md text-sm font-medium transition-all duration-200"
+              >
+                <item.icon className="h-5 w-5 text-green-500" />
+                <span className="whitespace-nowrap">{item.name}</span>
+              </Link>
+            ))}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-4 py-2 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-md shadow-sm transition duration-200"
+            >
+              Connect
+            </motion.button>
+          </div>
+        )}
       </div>
     </nav>
   )

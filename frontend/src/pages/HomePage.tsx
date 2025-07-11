@@ -1,4 +1,12 @@
 import React from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+
+
+
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { 
@@ -68,77 +76,134 @@ const HomePage: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-green-900 text-white overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-green-500/10 rounded-full blur-3xl animate-float"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse-slow"></div>
-          <div className="absolute top-3/4 left-1/2 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl animate-float" style={{animationDelay: '2s'}}></div>
-        </div>
-        
-        <div className="relative container-main section-padding">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            {/* Hero Content */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-left"
-            >
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-                The Future of 
-                <span className="text-gradient-hero block"> Energy Trading</span>
-              </h1>
-              <p className="text-xl md:text-2xl mb-8 text-gray-300 leading-relaxed">
-                PowerShare enables decentralized, AI-powered peer-to-peer energy trading 
-                for a sustainable and efficient energy ecosystem.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/dashboard" className="btn-primary inline-flex items-center justify-center">
-                  Get Started
-                  <ArrowRightIcon className="ml-2 h-5 w-5" />
-                </Link>
-                <button className="btn-secondary inline-flex items-center justify-center bg-white/10 border-white/30 text-white hover:bg-white/20">
-                  <PlayCircleIcon className="mr-2 h-5 w-5" />
-                  Watch Demo
-                </button>
-              </div>
-            </motion.div>
+    
 
-            {/* Hero Image/Animation */}
-            <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="relative bg-gradient-to-br from-white/10 to-white/5 rounded-3xl p-6 sm:p-8 backdrop-blur-sm border border-white/20">
-                <div className="grid grid-cols-2 gap-3 sm:gap-4">
-                  <div className="bg-green-500/20 rounded-2xl p-3 sm:p-4 energy-flow">
-                    <BoltIcon className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 mx-auto animate-pulse-slow text-green-400" />
-                    <p className="text-center mt-2 font-semibold text-xs sm:text-sm">Solar Energy</p>
-                  </div>
-                  <div className="bg-blue-500/20 rounded-2xl p-3 sm:p-4 energy-flow">
-                    <CpuChipIcon className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 mx-auto animate-pulse-slow text-blue-400" />
-                    <p className="text-center mt-2 font-semibold text-xs sm:text-sm">AI Trading</p>
-                  </div>
-                  <div className="bg-purple-500/20 rounded-2xl p-3 sm:p-4 energy-flow">
-                    <UserGroupIcon className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 mx-auto animate-pulse-slow text-purple-400" />
-                    <p className="text-center mt-2 font-semibold text-xs sm:text-sm">Community</p>
-                  </div>
-                  <div className="bg-emerald-500/20 rounded-2xl p-3 sm:p-4 energy-flow">
-                    <ShieldCheckIcon className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 mx-auto animate-pulse-slow text-emerald-400" />
-                    <p className="text-center mt-2 font-semibold text-xs sm:text-sm">Blockchain</p>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
+
+
+
+
+
+<section className="relative">
+  <Swiper
+    modules={[Navigation, Pagination, Autoplay]}
+    navigation
+    pagination={{ clickable: true }}
+    autoplay={{ delay: 1500 }}
+    loop={true}
+    className="mySwiper rounded-xl overflow-hidden"
+  >
+    
+ <SwiperSlide>
+  <div className="relative h-[500px]">
+   
+    <img src="image1.jpeg" alt="Slide 1" className="w-full h-full object-cover" />
+<div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-start p-[3rem] text-white">
+
+      <div className="grid lg:grid-cols-2 gap-12 items-center w-full">
+        {/* Hero Content */}
+        <motion.div
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-left"
+        >
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
+            The Future of <span>Energy Trading</span>
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 text-gray-300 leading-relaxed">
+            PowerShare enables decentralized, AI-powered peer-to-peer energy trading 
+            for a sustainable and efficient energy ecosystem.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Link to="/dashboard" className="btn-primary inline-flex items-center justify-center">
+              Get Started
+              <ArrowRightIcon className="ml-2 h-5 w-5" />
+            </Link>
+            <button className="btn-secondary inline-flex items-center justify-center bg-white/10 border-white/30 text-white hover:bg-white/20">
+              <PlayCircleIcon className="mr-2 h-5 w-5" />
+              Watch Demo
+            </button>
           </div>
-        </div>
-      </section>
+        </motion.div>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white relative">
+        {/* Animated Energy Blocks */}
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="relative"
+        >
+          <div className="relative bg-gradient-to-br from-white/10 to-white/5 rounded-3xl p-6 sm:p-8 backdrop-blur-sm border border-white/20">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <div className="bg-green-500/20 rounded-2xl p-3 sm:p-4 energy-flow">
+                <BoltIcon className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 mx-auto animate-pulse-slow text-green-400" />
+                <p className="text-center mt-2 font-semibold text-xs sm:text-sm">Solar Energy</p>
+              </div>
+              <div className="bg-blue-500/20 rounded-2xl p-3 sm:p-4 energy-flow">
+                <CpuChipIcon className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 mx-auto animate-pulse-slow text-blue-400" />
+                <p className="text-center mt-2 font-semibold text-xs sm:text-sm">AI Trading</p>
+              </div>
+              <div className="bg-purple-500/20 rounded-2xl p-3 sm:p-4 energy-flow">
+                <UserGroupIcon className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 mx-auto animate-pulse-slow text-purple-400" />
+                <p className="text-center mt-2 font-semibold text-xs sm:text-sm">Community</p>
+              </div>
+              <div className="bg-emerald-500/20 rounded-2xl p-3 sm:p-4 energy-flow">
+                <ShieldCheckIcon className="h-6 w-6 sm:h-8 sm:w-8 md:h-10 md:w-10 lg:h-12 lg:w-12 mx-auto animate-pulse-slow text-emerald-400" />
+                <p className="text-center mt-2 font-semibold text-xs sm:text-sm">Blockchain</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  </div>
+</SwiperSlide>
+
+
+    
+   <SwiperSlide>
+  <div className="relative h-[500px]">
+    <img src="/image2.jpg" alt="Slide 2" className="w-full h-full object-cover" />
+    <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-start p-[3rem] text-white">
+      <h2 className="text-3xl font-bold mb-4">AI Trading Agents</h2>
+      <p className="text-lg mb-4">
+        Intelligent agents dynamically generate bids and asks using real-time data, forecasts, and historical trends to optimize energy exchange.
+      </p>
+      <button className="btn-primary">Explore AI Logic</button>
+    </div>
+  </div>
+</SwiperSlide>
+
+<SwiperSlide>
+  <div className="relative h-[500px]">
+    <img src="/image3.jpg" alt="Slide 3" className="w-full h-full object-cover" />
+    <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-start p-[3rem] text-white">
+      <h2 className="text-3xl font-bold mb-4">Blockchain Security</h2>
+      <p className="text-lg mb-4">
+        Every energy transaction is securely recorded on a distributed ledger, ensuring transparency, immutability, and trust across all nodes.
+      </p>
+      <button className="btn-primary">Discover Blockchain</button>
+    </div>
+  </div>
+</SwiperSlide>
+
+<SwiperSlide>
+  <div className="relative h-[500px]">
+    <img src="/image4.jpg" alt="Slide 4" className="w-full h-full object-cover" />
+    <div className="absolute inset-0 bg-black/40 flex flex-col justify-center items-start p-[3rem] text-white">
+      <h2 className="text-3xl font-bold mb-4">Beckn Protocol</h2>
+      <p className="text-lg mb-4">
+        Beckn enables seamless API communication between buyers, sellers, and DISCOMs, making energy trading interoperable and scalable.
+      </p>
+      <button className="btn-primary">Learn About Beckn</button>
+    </div>
+  </div>
+</SwiperSlide>
+
+  </Swiper>
+</section>
+
+ <section className="py-16 bg-white relative">
         <div className="container-main">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {stats.map((stat, index) => (
