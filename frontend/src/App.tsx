@@ -16,6 +16,8 @@ import Analytics from './pages/Analytics'
 import Settings from './pages/Settings'
 import AIAssistant from './pages/AIAssistant'
 import AgentDashboard from './pages/AgentDashboard'
+import BecknProtocol from './pages/BecknProtocol'
+import CoinsCard from '@/components/CoinsCard'; 
 
 // Services
 import { AuthProvider } from './contexts/AuthContext'
@@ -42,6 +44,8 @@ function App() {
                 <Route path="/analytics" element={<Analytics />} />
                 <Route path="/ai-assistant" element={<AIAssistant />} />
                 <Route path="/agent-dashboard" element={<AgentDashboard />} />
+                <Route path="/beckn-protocol" element={<BecknProtocol />} />
+                <Route path="/coins" element={<CoinsCard />} />
                 <Route path="/settings" element={<Settings />} />
               </Routes>
             </motion.div>

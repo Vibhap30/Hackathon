@@ -11,7 +11,9 @@ import {
   ShoppingCartIcon,
   BuildingOfficeIcon,
   CpuChipIcon,
-  Cog6ToothIcon
+  GlobeAltIcon,
+  Cog6ToothIcon,
+  WalletIcon
 } from '@heroicons/react/24/outline'
 
 const Navbar: React.FC = () => {
@@ -20,12 +22,16 @@ const Navbar: React.FC = () => {
   const navItems = [
     { name: 'Home', href: '/', icon: HomeIcon },
     { name: 'Dashboard', href: '/dashboard', icon: ChartBarIcon },
-    { name: 'Marketplace Agent', href: '/marketplace', icon: ShoppingCartIcon },
-    { name: 'Community Agent', href: '/community', icon: BuildingOfficeIcon },
+    { name: 'Marketplace', href: '/marketplace', icon: ShoppingCartIcon },
+    { name: 'Community', href: '/community', icon: BuildingOfficeIcon },
     { name: 'Analytics', href: '/analytics', icon: ChartBarIcon },
     { name: 'AI Assistant', href: '/ai-assistant', icon: CpuChipIcon },
     { name: 'Agents', href: '/agent-dashboard', icon: CpuChipIcon },
+    { name: 'Beckn Protocol', href: '/beckn-protocol', icon: GlobeAltIcon },
+   
     { name: 'Settings', href: '/settings', icon: Cog6ToothIcon },
+    {name:'Coins',href:'/coins',icon:WalletIcon}
+    
   ]
 
   return (
@@ -62,13 +68,13 @@ const Navbar: React.FC = () => {
                 <span className="whitespace-nowrap">{item.name}</span>
               </Link>
             ))}
-            <motion.button
+            {/* <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="px-3 py-1.5 text-sm font-medium text-white bg-green-600 hover:bg-green-700 rounded-lg shadow-sm transition duration-200"
             >
               Connect
-            </motion.button>
+            </motion.button> */}
           </div>
         </div>
 

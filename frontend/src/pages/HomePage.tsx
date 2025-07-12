@@ -169,7 +169,10 @@ const HomePage: React.FC = () => {
       <p className="text-lg mb-4">
         Intelligent agents dynamically generate bids and asks using real-time data, forecasts, and historical trends to optimize energy exchange.
       </p>
-      <button className="btn-primary">Explore AI Logic</button>
+      <Link to="/ai-assistant">
+  <button className="btn-primary">Explore AI Logic</button>
+</Link>
+
     </div>
   </div>
 </SwiperSlide>
@@ -195,7 +198,9 @@ const HomePage: React.FC = () => {
       <p className="text-lg mb-4">
         Beckn enables seamless API communication between buyers, sellers, and DISCOMs, making energy trading interoperable and scalable.
       </p>
+      <Link to="/beckn-protocol">
       <button className="btn-primary">Learn About Beckn</button>
+      </Link>
     </div>
   </div>
 </SwiperSlide>

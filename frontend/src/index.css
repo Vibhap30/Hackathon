@@ -167,7 +167,7 @@ html {
 
   /* Layout Components */
   .container-main {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .section-padding {
@@ -228,6 +228,23 @@ html {
     transform: translateY(-20px);
   }
 }
+/* styles.css */
+.tooltip {
+  position: fixed;
+  background: rgba(17, 24, 39, 0.95);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  pointer-events: none;
+  z-index: 1000;
+  max-width: 280px;
+  font-family: system-ui, sans-serif;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  display: none;
+}
+
 
 @keyframes energyFlow {
   0% {
